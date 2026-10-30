@@ -18,8 +18,3 @@
   <meta property="og:url" content="{{ page.canonical_url }}">
   <meta name="author" content="{{ cite.author_given }} {{ cite.author_family }}">
 {% endblock %}
-
-{% block content %}
-  {{ super() }}
-  {% with cite_place = "content" %}{% include "partials/cite.html" %}{% endwith %}
-{% endblock %}

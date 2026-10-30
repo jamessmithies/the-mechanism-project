@@ -74,8 +74,7 @@
 .md-search__input::placeholder { color: #999999; }
 .md-search__icon[for="__search"] { color: #999999; }
 
-/* Cite this page: a transparent box under the side navigation, or at the foot of the page when
-   the navigation has folded into the drawer (Material shows the sidebar from 76.25em). */
+/* Cite this page: a transparent box under the side navigation (and in the menu drawer). */
 .tm-cite {
   margin: 1.2rem 0.6rem 0;
   padding: 0.6rem 0.7rem;
@@ -95,11 +94,16 @@
 }
 .tm-cite a { color: var(--md-typeset-a-color); word-break: break-all; }
 .tm-cite a:hover { color: var(--md-accent-fg-color); }
-.tm-cite--content { margin: 2.5rem 0 0; font-size: 0.7rem; }
 
-@media screen and (min-width: 76.25em) {
-  .tm-cite--content { display: none; }
+/* Footer: copyright and licences, on the page background with a rule above. */
+.md-footer-meta__inner { justify-content: center; }
+.md-copyright {
+  width: 100%;
+  margin: 0.8rem auto;
+  text-align: center;
+  font-size: 0.62rem;
+  line-height: 1.7;
 }
-@media screen and (max-width: 76.234375em) {
-  .tm-cite--nav { display: none; }
-}
+.md-copyright__highlight { color: var(--md-default-fg-color--light); }
+.md-copyright a { color: var(--md-typeset-a-color); }
+.md-copyright a:hover { color: var(--md-accent-fg-color); }

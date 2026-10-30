@@ -1,5 +1,4 @@
-{#- The citation box. Placed under the side navigation on wide screens and at the foot of the
-    page on narrow ones, where the side navigation folds into the menu drawer. -#}
+{#- The citation box, under the side navigation (in the menu drawer on narrow screens). -#}
 {% set cite = config.extra.citation %}
 {% set cite_title = cite.site_title if page.is_homepage else page.title %}
 {% set cite_date = (page.meta and page.meta.date) or cite.date %}
