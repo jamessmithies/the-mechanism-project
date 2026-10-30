@@ -62,3 +62,14 @@
 .md-footer,
 .md-footer-meta { background-color: var(--md-default-bg-color); color: var(--md-default-fg-color--light); }
 .md-footer-meta { border-top: 1px solid var(--tm-rule); }
+
+/* Search: a white field with a grey rule, grey prompt, black input. */
+.md-search__form {
+  background-color: var(--md-default-bg-color);
+  border: 1px solid var(--tm-rule);
+  box-shadow: none;
+}
+.md-search__form:hover { background-color: var(--md-default-bg-color); border-color: #c2c2c2; }
+.md-search__input { color: var(--md-typeset-color); }
+.md-search__input::placeholder { color: #999999; }
+.md-search__icon[for="__search"] { color: #999999; }
