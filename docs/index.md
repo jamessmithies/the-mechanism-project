@@ -13,16 +13,16 @@ current monograph, *Digital Modernity: Why We Need to Think Historically About t
 This site documents it at a technical level: what it is, how it works, what it costs, and what
 building it has taught.
 
-<!-- Video: embed here once published (YouTube, Vimeo or ANU hosting; GitHub Pages will not serve it). -->
+<!-- Introductory video: embed here once published (YouTube, Vimeo or ANU hosting; GitHub Pages will not serve it). -->
 
 ## On this site
 
 - [Why build it this way](why.md): the method, and the benefits that emerged from it.
+- [How it works](how-it-works.md): a book and a question, followed through the system.
 - [About](about.md): who I am, and my books.
 
-Still to come: how a question and a book travel through the system, the architecture and its
-trust boundaries, the decisions that shaped it, what building it taught, and the research it
-supports.
+Still to come: the architecture and its trust boundaries, the decisions that shaped it, what
+building it taught, and the research it supports.
 
 ## Research
 
