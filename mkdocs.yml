@@ -6,6 +6,7 @@ site_author: James Smithies
 site_url: https://jamessmithies.github.io/the-mechanism-project/
 repo_url: https://github.com/jamessmithies/the-mechanism-project
 repo_name: the-mechanism-project
+copyright: '© 2026 James Smithies · Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>'
 
 theme:
   name: material
