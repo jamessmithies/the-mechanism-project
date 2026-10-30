@@ -1,4 +1,4 @@
-# Why build it this way
+# Why it was built this way
 
 ## The method
 
