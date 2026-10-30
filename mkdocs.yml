@@ -9,6 +9,7 @@ repo_name: the-mechanism-project
 
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.sections
     - content.code.copy
@@ -54,3 +55,10 @@ nav:
   - Architecture: architecture.md
   - Decisions: decisions.md
   - About Me: about.md
+
+extra:
+  citation:
+    site_title: The Mechanism (TM)
+    author_family: Smithies
+    author_given: James
+    date: "2026-10-30"

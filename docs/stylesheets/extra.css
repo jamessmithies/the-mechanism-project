@@ -73,3 +73,19 @@
 .md-search__input { color: var(--md-typeset-color); }
 .md-search__input::placeholder { color: #999999; }
 .md-search__icon[for="__search"] { color: #999999; }
+
+/* Cite this page */
+.tm-cite {
+  margin-top: 2.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--tm-rule);
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+}
+.tm-cite p { margin: 0.2rem 0; }
+.tm-cite__label {
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.tm-cite a { word-break: break-all; }

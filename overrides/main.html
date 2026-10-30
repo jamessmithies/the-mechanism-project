@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{#- Citation metadata. Zotero's embedded-metadata translator reads the Dublin Core and Open
+    Graph tags below and, with no journal-style citation_* tags present, saves a Web Page item. -#}
+{% set cite = config.extra.citation %}
+{% set cite_title = cite.site_title if page.is_homepage else page.title %}
+{% set cite_date = (page.meta and page.meta.date) or cite.date %}
+
+{% block extrahead %}
+  <meta name="DC.title" content="{{ cite_title }}">
+  <meta name="DC.creator" content="{{ cite.author_family }}, {{ cite.author_given }}">
+  <meta name="DC.date" content="{{ cite_date }}">
+  <meta name="DC.language" content="en">
+  <meta name="DC.identifier" content="{{ page.canonical_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ cite.site_title }}">
+  <meta property="og:title" content="{{ cite_title }}">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta name="author" content="{{ cite.author_given }} {{ cite.author_family }}">
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+  <aside class="tm-cite">
+    <p class="tm-cite__label">Cite this page</p>
+    <p>
+      {{ cite.author_family }}, {{ cite.author_given }}.
+      {%- if page.is_homepage %} <em>{{ cite.site_title }}</em>. {{ cite_date[:4] }}.
+      {%- else %} “{{ cite_title }}.” <em>{{ cite.site_title }}</em>, {{ cite_date[:4] }}.
+      {%- endif %}
+      <a href="{{ page.canonical_url }}">{{ page.canonical_url }}</a>.
+    </p>
+  </aside>
+{% endblock %}

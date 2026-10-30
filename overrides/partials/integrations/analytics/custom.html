@@ -1,0 +1,7 @@
+{#- Cookieless page counts. The provider and its public site token are set in mkdocs.yml. -#}
+{% set a = config.extra.analytics %}
+{% if a.cloudflare_token %}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ a.cloudflare_token }}"}'></script>
+{% elif a.goatcounter_code %}
+  <script data-goatcounter="https://{{ a.goatcounter_code }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{% endif %}
