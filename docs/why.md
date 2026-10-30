@@ -34,8 +34,9 @@ It is not faster or simpler than renting, and efficiency was never the point. Re
 arrives with its trade-offs already made and hidden behind an invoice. Owned hardware pushes back,
 and the pushback is the evidence.
 
-On cost, though, it compares better than it might seem. The found hardware cost nothing new, the
-additions were modest and were funded by my ANU Futures Scheme award (2024–2026), and the cluster draws about 37 watts, under A$10 a month in electricity.
+On cost, though, it compares better than it might seem. The project is funded by my ANU Futures
+Scheme award (2024–2026). The found hardware cost nothing new, the additions were modest, and the
+cluster draws about 37 watts, under A$10 a month in electricity.
 Renting the equivalent, a server for the always-on services plus a GPU on demand for the heavy
 batches, costs several times that every month. I plan to run The Mechanism for at least five years.
 Spread over that span, the purchases, the electricity and an allowance for replacement parts come to
