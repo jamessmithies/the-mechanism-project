@@ -61,6 +61,9 @@ nav:
   - About Me: about.md
 
 extra:
+  analytics:
+    provider: custom
+    goatcounter_code: jamessmithies
   citation:
     site_title: The Mechanism (TM)
     author_family: Smithies
