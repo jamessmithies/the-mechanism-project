@@ -38,8 +38,9 @@ On cost, though, it compares better than it might seem. The found hardware cost 
 additions were modest, and the cluster draws about 37 watts, under A$10 a month in electricity.
 Renting the equivalent, a server for the always-on services plus a GPU on demand for the heavy
 batches, costs several times that every month. I plan to run The Mechanism for at least five years.
-Spread over that span, the purchases and the occasional replacement part add little to the
-electricity bill, and the total should come in at or below renting. That sum leaves out the time
+Spread over that span, the purchases, the electricity and an allowance for replacement parts come to
+about A$40 a month. Renting a server for the always-on services alone would cost A$40–80 a month,
+before any GPU time. That sum leaves out the time
 spent building it, which was the point.
 
 Nor is it sealed off. Synthesis, the step where a frontier model reads retrieved passages and
