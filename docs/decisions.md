@@ -29,16 +29,14 @@ Google and OpenAI) so the perspectives genuinely differ, not just the parameters
 leave my hardware. Running everything locally would sacrifice quality where it matters most.
 
 **The cost.** Two tiers of local hardware to look after, and a rule that model versions are pinned
-exactly. A model that changes underneath the system, with nothing recording what ran, makes old
-transcripts useless as evidence.
+exactly. 
 
 ## 3. One key, one machine
 
 Each credential lives on exactly one machine. Everything else reaches the service through a small
 bridge that lets it use the service without ever seeing the key.
 
-**Why.** A compromised agent can search the library, but not walk off with the
-library's key and use it from somewhere else.
+**Why.** A compromised agent can search the library, but not copy they key and use it elsewhere.
 
 **The cost.** More small services to run, and a rule that no new credential-bearing service is
 deployed until its boundary is defined. In practice I never notice the boundaries between the services; usage is seamless despite the agents being constrained.
