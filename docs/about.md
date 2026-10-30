@@ -1,6 +1,6 @@
 # About Me
 
-I am Professor of Digital Humanities and Director of the HASS Digital Research Hub (HRDH) at the
+I am Professor of Digital Humanities and Director of the [HASS Digital Research Hub](https://hdrh.anu.edu.au/) (HDRH) at the
 Australian National University. Before ANU I was Professor of Digital Humanities in the Department
 of Digital Humanities at King's College London. Before then I was founding director of King's
 Digital Lab and deputy director of King's eResearch. Prior to working at King's I worked as a senior
