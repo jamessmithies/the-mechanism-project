@@ -30,10 +30,15 @@ been less tactile, and I suspect less productive. Here the ideas had to run befo
 
 ## What it is not
 
-It is not cheaper, faster or simpler than renting. A cloud GPU would do the heavy work for roughly
-the same money, and a small virtual server would run the always-on services. The point was never
-efficiency. Rented infrastructure arrives with its trade-offs already made and hidden behind an
-invoice. Owned hardware pushes back, and the pushback is the evidence.
+It is not faster or simpler than renting, and efficiency was never the point. Rented infrastructure
+arrives with its trade-offs already made and hidden behind an invoice. Owned hardware pushes back,
+and the pushback is the evidence.
+
+On cost, though, it compares better than it might seem. The found hardware cost nothing, the
+additions were modest, and the cluster draws about 37 watts, under A$10 a month in electricity.
+Renting the equivalent, a server for the always-on services plus a GPU on demand for the heavy
+batches, costs more than that every month, so over several years the purchases should pay for
+themselves. That sum leaves out the time spent building it, which was the point.
 
 Nor is it sealed off. Synthesis, the step where a frontier model reads retrieved passages and
 writes, goes to a commercial model through an API, and the reference library syncs through a cloud
@@ -48,9 +53,11 @@ These benefits weren't the reasons for building it. They're findings.
   to run on a different rhythm from conversation with a frontier model. That is continuous,
   low-stakes, high-volume work, a distinct kind of AI use that only became visible once the
   infrastructure was there to run it.
-- **Models of different sizes.** A small model on the Jetson, a larger one on the desktop and a
-  frontier model through an API. Model scale becomes something to study directly: which research
-  tasks need a frontier model, and which don't.
+- **Finding the floor.** The cluster made it possible to find the lower limits of useful AI by
+  working upward from the bottom. A small 8-billion-parameter model on the Jetson handled a task
+  until the task outgrew it. Then a 32-billion-parameter model on the desktop took over, and a
+  frontier model was used only for what neither could manage. Model scale becomes something to
+  study directly: which research tasks need a frontier model, and how much runs well on far less.
 - **A degree of data sovereignty.** Partial and negotiated, not absolute. The interesting thing is
   the degree: where keeping data local was cheap, where it was expensive, and where I gave it up
   deliberately.
