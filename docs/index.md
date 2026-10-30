@@ -19,10 +19,11 @@ building it has taught.
 
 - [Why build it this way](why.md): the method, and the benefits that emerged from it.
 - [How it works](how-it-works.md): a book and a question, followed through the system.
+- [Architecture](architecture.md): the network, trust boundaries, the agent's limits, and the models.
 - [About](about.md): who I am, and my books.
 
-Still to come: the architecture and its trust boundaries, the decisions that shaped it, what
-building it taught, and the research it supports.
+Still to come: the decisions that shaped it, what building it taught, and the research it
+supports.
 
 ## Research
 

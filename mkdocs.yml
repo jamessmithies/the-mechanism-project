@@ -51,4 +51,5 @@ nav:
   - Home: index.md
   - Why build it this way: why.md
   - How it works: how-it-works.md
+  - Architecture: architecture.md
   - About: about.md
