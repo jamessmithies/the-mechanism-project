@@ -2,7 +2,8 @@
 
 *As of October 2026.*
 
-The Mechanism (TM) keeps a record of its architectural decisions: what was decided, why, and its impact. More than thirty exist. These six show some key examples.
+## A weak justification
+If I was forced to provide a single justification for the contraption's continued existence I would point to the balance between a closed universe of scholarly sources and the power of persistent agentic AI: the balance is difficult to achieve but compelling. My suspicion is that AI-enabled humanities research requires a radical narrowing to high quality sources tailored to the individual researcher, coupled with persistent agentic AI that can guide, critique, and learn alongside the researcher. This requires a lot more than straight-forward "chat with my pdfs" functionality, but significantly less than access to the entire World Wide Web. TM keeps the researcher firmly at the centre of epistemological and methodological decision-making but with access to the full range of their own sources (primary, secondary, RSS, social media) along with a consistent 'mentor and guide' and a range of configurable 'critical friends'. By keeping as much processing offline as possible and retaining detailed records in offline Markdown files I feel in control: I could continue to work on my monograph project even in the worst case scenario where access to frontier AI is entirely disabled. Frontier AI services are only accessed intermittently, for advanced text processing and occasional 1-1 discussion sessions and workshops with multiple AI models. Because everything rests on Markdown files and a Zotero library, my research would also move easily to another platform offering the same balance. The Mechanism (TM) keeps a record of its architectural decisions: what was decided, why, and its impact. More than thirty exist. These six show some key examples.
 
 ## 1. A closed universe, permanently
 
