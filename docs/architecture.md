@@ -18,8 +18,8 @@ looks pragmatic rather than fortified.
 - **My own mistakes.** The answer to these is backups and rollback, not prevention.
 
 **What it doesn't try to defend against:** a determined state-level adversary, physical access to the
-machines, compromised upstream software, very slow covert exfiltration, or the compromise of the
-network provider in front of it.
+machines, compromised upstream software, very slow covert exfiltration, or the compromise of
+Cloudflare, which sits in front of it.
 
 ## The network
 
@@ -29,6 +29,7 @@ flowchart TB
         CF["Cloudflare<br/>tunnel and access control"]
         APIs["Allowed services<br/>(library, model APIs,<br/>academic catalogues)"]
         TG["Telegram"]
+        ME["Me, in a browser"]
     end
     subgraph Home["Home network"]
         DT["Desktop<br/>(off the cluster network)"]
@@ -40,7 +41,9 @@ flowchart TB
             FEED["Feed reader"]
         end
     end
+    ME -->|"one-time code"| CF
     CF <-->|"outbound tunnel only"| HEAD
+    HEAD -->|"dashboard"| AG
     HEAD -->|"allowlisted requests"| APIs
     AG -->|"polls"| TG
     DT -->|"files only"| HEAD
@@ -71,12 +74,15 @@ through a small bridge that exposes only the operations needed.
 | Model and messaging keys | The agent node, in a file only the agent's user can read, and the workflow engine on the cluster head, for the weekly digest and notifications | Nothing: no other machine needs them |
 | Infrastructure secrets | Encrypted in the configuration repository | Decrypted only when the configuration is applied |
 
-The desktop holds its own library key, for fetching PDFs. It sits off the cluster
-network, so a compromised cluster machine can't reach it.
+The desktop holds its own library key, for fetching PDFs. It sits off the cluster network, so a
+compromised cluster machine can't reach it.
 
 ## The agent
 
-The agent is the part of the system most exposed to what it reads, so it gets the least:
+The agent is [Hermes Agent](https://github.com/NousResearch/hermes-agent), an open-source framework
+from Nous Research, running Claude Opus 5.5 through OpenRouter. I work with it mostly in its browser
+dashboard and sometimes over Telegram. It is the part of the system most exposed to what it reads,
+so it gets the least:
 
 - **Its own machine and its own user,** with no SSH key. The cluster head refuses SSH connections
   from it in any case.
@@ -88,8 +94,6 @@ The agent is the part of the system most exposed to what it reads, so it gets th
   entries from the feeds I follow. The weekly digest goes a step further: feed items are first
   scored by a small local model that can return only a structured verdict and has no tools.
 - **Operating-system confinement.** An AppArmor profile limits what the agent's process can touch.
-  It is currently being re-tested in a mode that logs violations without blocking them, while its
-  rules are refined.
 
 The remaining risk is stated rather than hidden: instructions planted in a document I ingest could
 reach the agent inside a retrieved passage. The defences above limit what such an instruction could
@@ -102,16 +106,18 @@ then do.
 | Qwen3 8B | Jetson | Triage: scoring feed items for relevance to each research track |
 | Qwen3 32B | Desktop GPU | Describing each passage of every ingested text; triaging new publication records |
 | nomic-embed-text | Jetson | Turning passages and questions into vectors for search |
-| A frontier model, through an API | Elsewhere | Synthesis: answering questions from retrieved passages, and curating the weekly digest |
+| Claude Opus 5.5, through OpenRouter | Anthropic's cloud | The agent: conversation, and answering questions from retrieved passages |
+| Claude Sonnet 5, through OpenRouter | Anthropic's cloud | Curating the weekly digest from the items Qwen3 8B has scored |
 
 ## Software and operations
 
 - **Infrastructure as code.** Every cluster machine is configured from one repository with Ansible.
   Services run in Docker containers or as systemd units, and the desktop's jobs run from the same
   repository under cron.
-- **The main components** are all open source: Chroma (vector store), Ollama (local models),
-  Syncthing (file transport), n8n (scheduled workflows), Miniflux (feeds), and Prometheus and
-  Grafana (monitoring).
+- **The main components** are all open source: Hermes Agent (the agent), Chroma (vector store),
+  Ollama (local models), Syncthing (file transport), n8n (scheduled workflows), Miniflux (feeds),
+  PyMuPDF (text extraction), and Prometheus and Grafana (monitoring). Zotero holds the reference
+  library, and Cloudflare provides the tunnel and access control.
 - **Backups** run daily to local storage and weekly, encrypted, to cloud object storage. Rollback is
   treated as a normal operation, not an emergency.
 - **Integrity reporting.** An hourly check compares what the library says the corpus should contain
