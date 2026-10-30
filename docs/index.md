@@ -31,4 +31,5 @@ supports.
 
 ---
 
-James Smithies, Australian National University.
+James Smithies, Australian National University. The Mechanism's hardware was funded by my ANU
+Futures Scheme award (2024–2026), made when I joined the ANU.
