@@ -60,9 +60,13 @@ These benefits weren't the reasons for building it. They're findings.
   until the task outgrew it. Then a 32-billion-parameter model on the desktop took over, and a
   frontier model was used only for what neither could manage. Model scale becomes something to
   study directly: which research tasks need a frontier model, and how much runs well on far less.
-- **A degree of data sovereignty.** Partial and negotiated, not absolute. The interesting thing is
-  the degree: where keeping data local was cheap, where it was expensive, and where I gave it up
-  deliberately.
+- **Full texts stay on my own hardware.** Whole books and articles are extracted, chunked,
+  described by a local model, embedded and indexed on machines I own. None of that runs through a
+  frontier model or a cloud service. A frontier model sees only the handful of passages a search
+  returns when it answers a question, never the book. The PDFs themselves sync through my reference
+  manager's storage, so this isn't total data sovereignty. It is partial and negotiated, and the
+  degree is the interesting part: where keeping data local was cheap, where it was expensive, and
+  where I gave it up deliberately.
 - **Constraints as evidence.** Collections that existed but couldn't be searched. Annotations
   produced and never ingested. Jobs that outgrew the hardware they started on. Each shows where the
   apparatus resists, and surfacing that resistance is the purpose of critical technical practice.
