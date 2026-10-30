@@ -1,6 +1,6 @@
 # How it works
 
-*As of October 2026. The Mechanism keeps changing; this page describes its design, not every detail.*
+*As of October 2026. The Mechanism is evolving; this page describes its design rather than every detail. The full code is stored in a private GitHub repo that cannot be made public for security reasons*
 
 The easiest way to understand The Mechanism is to follow two things through it: a book on its way
 into the corpus, and a question on its way to an answer. Most of the design shows up along the
