@@ -9,8 +9,8 @@ an experiment in an open world of agents roaming the internet. What enters it is
 library, the feeds I follow, a handful of structured academic catalogues, and my own messages.
 Nothing arrives because an agent went looking for it.
 
-That closure is a research choice as much as a security one. It gives a degree of epistemic control
-and definition that the open internet can't offer. I know what the system can know, where each
+That closure is a research choice as much as a security one. It balances the power of agentic AI
+with a degree of epistemic control and definition that the open internet can't offer. I know what the system can know, where each
 piece of it came from, and every passage it retrieves carries its source. When it answers a
 question, the boundaries of what it drew on are the boundaries I set.
 
