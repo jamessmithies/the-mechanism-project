@@ -2,6 +2,25 @@
 
 *As of October 2026. This page describes the design, not every detail.*
 
+## A closed universe
+
+The Mechanism is designed as a closed universe. The aim was a closed, personal research tool, not
+an experiment in an open world of agents roaming the internet. What enters it is chosen: my
+library, the feeds I follow, a handful of structured academic catalogues, and my own messages.
+Nothing arrives because an agent went looking for it.
+
+That closure is a research choice as much as a security one. It gives a degree of epistemic control
+and definition that the open internet can't offer. I know what the system can know, where each
+piece of it came from, and every passage it retrieves carries its source. When it answers a
+question, the boundaries of what it drew on are the boundaries I set.
+
+Inside that universe, data moves on a *rivers of data* model. The cluster head is the primary
+headwaters: the point where scheduled work starts, where files are relayed between machines, and
+through which everything entering or leaving passes. From there data flows down defined channels to
+the machines and agents that use it. Each agent is constrained to the data relevant to its function,
+and reaches nothing else. Most of what follows on this page is how those channels are cut and kept
+narrow.
+
 ## The stance
 
 The Mechanism is a research cluster under one researcher's control, on home hardware. Every external
