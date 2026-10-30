@@ -49,7 +49,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Why build it this way: why.md
+  - Why it was built this way: why.md
   - How it works: how-it-works.md
   - Architecture: architecture.md
   - Decisions: decisions.md
