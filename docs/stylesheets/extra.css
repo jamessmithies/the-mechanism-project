@@ -1,0 +1,64 @@
+/* After jamessmithies.org: black on white, grey links and rules, Roboto Condensed capitals for titles. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #ffffff;
+  --md-primary-bg-color: #000000;
+  --md-accent-fg-color: #aaaaaa;
+  --md-default-fg-color: #000000;
+  --md-default-fg-color--light: #666666;
+  --md-typeset-color: #111111;
+  --md-typeset-a-color: #666666;
+  --md-default-bg-color: #ffffff;
+  --tm-rule: #eaeaea;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #111111;
+  --md-primary-bg-color: #eeeeee;
+  --md-accent-fg-color: #ffffff;
+  --md-default-fg-color--light: #aaaaaa;
+  --md-typeset-color: #e5e5e5;
+  --md-typeset-a-color: #c2c2c2;
+  --md-default-bg-color: #111111;
+  --tm-rule: #333333;
+}
+
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid var(--tm-rule);
+}
+
+.md-header__title,
+.md-nav__title,
+.md-nav__link,
+.md-typeset h1 {
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.md-header__title { font-size: 0.8rem; }
+.md-nav__link { font-size: 0.65rem; }
+
+.md-typeset h1 {
+  color: var(--md-typeset-color);
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.md-typeset h2,
+.md-typeset h3 {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
+  color: var(--md-typeset-color);
+}
+
+.md-typeset a { text-decoration: none; }
+.md-typeset a:hover { color: var(--md-accent-fg-color); }
+
+.md-typeset hr { border-bottom-color: var(--tm-rule); }
+
+.md-footer,
+.md-footer-meta { background-color: var(--md-default-bg-color); color: var(--md-default-fg-color--light); }
+.md-footer-meta { border-top: 1px solid var(--tm-rule); }
