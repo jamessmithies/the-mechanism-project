@@ -104,6 +104,13 @@
   font-size: 0.62rem;
   line-height: 1.7;
 }
-.md-copyright__highlight { color: var(--md-default-fg-color--light); }
-.md-copyright a { color: var(--md-typeset-a-color); }
-.md-copyright a:hover { color: var(--md-accent-fg-color); }
+.md-copyright,
+.md-copyright__highlight { color: var(--md-typeset-color); }
+/* Material colours footer links with its (white) footer colour; match its specificity to override. */
+.md-footer-meta.md-typeset a,
+html .md-footer-meta.md-typeset a:hover,
+.md-footer-meta.md-typeset a:focus {
+  color: var(--md-typeset-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
