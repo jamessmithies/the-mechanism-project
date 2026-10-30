@@ -37,8 +37,10 @@ and the pushback is the evidence.
 On cost, though, it compares better than it might seem. The found hardware cost nothing, the
 additions were modest, and the cluster draws about 37 watts, under A$10 a month in electricity.
 Renting the equivalent, a server for the always-on services plus a GPU on demand for the heavy
-batches, costs more than that every month, so over several years the purchases should pay for
-themselves. That sum leaves out the time spent building it, which was the point.
+batches, costs several times that every month. I plan to run The Mechanism for at least five years.
+Spread over that span, the purchases and the occasional replacement part add little to the
+electricity bill, and the total should come in well under renting. That sum leaves out the time
+spent building it, which was the point.
 
 Nor is it sealed off. Synthesis, the step where a frontier model reads retrieved passages and
 writes, goes to a commercial model through an API, and the reference library syncs through a cloud
