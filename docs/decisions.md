@@ -15,7 +15,7 @@ cluster doesn't warrant enterprise defences. Throwaway accounts make any comprom
 rotating a key and restoring from backup.
 
 **The cost.** The agent can't discover new sources on its own. That is treated as a feature: every
-new channel has to be approved by me. Browser automation is permanently rejected for the same reason. This constraint has turned into one of the systems best affordances. If I need an agent with access to the world I use a standard AI service.
+new channel has to be approved by me. Browser automation is permanently rejected for the same reason. This constraint has turned into one of the system's best affordances. If I need an agent with access to the world I use a standard AI service.
 
 ## 2. Local models for volume, frontier models for judgement
 
@@ -59,7 +59,7 @@ The original rule was that copyrighted full texts would never leave my own machi
 the reference library was already storing every attached PDF on its own servers, and keeping the
 rule meant filing each book twice: once in the Zotero library, once in a folder on the desktop.
 
-I decided the Zotero library's WebDav storage is a trusted channel. The desktop now fetches PDFs from the library
+I decided the Zotero library's cloud storage is a trusted channel. The desktop now fetches PDFs from the library
 itself, and filing a book once is the only manual step.
 
 **What didn't change.** Extraction, description and embedding still happen locally. No full text is
