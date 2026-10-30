@@ -18,6 +18,7 @@ building it has taught.
 ## On this site
 
 - [Why build it this way](why.md): the method, and the benefits that emerged from it.
+- [About](about.md): who I am, and my books.
 
 Still to come: how a question and a book travel through the system, the architecture and its
 trust boundaries, the decisions that shaped it, what building it taught, and the research it
