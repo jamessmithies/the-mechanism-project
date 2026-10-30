@@ -74,18 +74,32 @@
 .md-search__input::placeholder { color: #999999; }
 .md-search__icon[for="__search"] { color: #999999; }
 
-/* Cite this page */
+/* Cite this page: a transparent box under the side navigation, or at the foot of the page when
+   the navigation has folded into the drawer (Material shows the sidebar from 76.25em). */
 .tm-cite {
-  margin-top: 2.5rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--tm-rule);
-  font-size: 0.7rem;
+  margin: 1.2rem 0.6rem 0;
+  padding: 0.6rem 0.7rem;
+  background: transparent;
+  border: 1px solid var(--tm-rule);
+  border-radius: 2px;
+  font-size: 0.62rem;
+  line-height: 1.5;
   color: var(--md-default-fg-color--light);
 }
-.tm-cite p { margin: 0.2rem 0; }
+.tm-cite p { margin: 0.25rem 0; }
 .tm-cite__label {
   font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: var(--md-typeset-color);
 }
-.tm-cite a { word-break: break-all; }
+.tm-cite a { color: var(--md-typeset-a-color); word-break: break-all; }
+.tm-cite a:hover { color: var(--md-accent-fg-color); }
+.tm-cite--content { margin: 2.5rem 0 0; font-size: 0.7rem; }
+
+@media screen and (min-width: 76.25em) {
+  .tm-cite--content { display: none; }
+}
+@media screen and (max-width: 76.234375em) {
+  .tm-cite--nav { display: none; }
+}

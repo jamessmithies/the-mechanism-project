@@ -21,19 +21,5 @@
 
 {% block content %}
   {{ super() }}
-  <aside class="tm-cite">
-    <p class="tm-cite__label">Cite this page</p>
-    <p>
-      {{ cite.author_family }}, {{ cite.author_given }}.
-      {%- if page.is_homepage %} <em>{{ cite.site_title }}</em>. {{ cite_date[:4] }}.
-      {%- else %} “{{ cite_title }}.” <em>{{ cite.site_title }}</em>, {{ cite_date[:4] }}.
-      {%- endif %}
-      <a href="{{ page.canonical_url }}">{{ page.canonical_url }}</a>.
-    </p>
-    <p class="tm-cite__files">
-      Add to Zotero or a reference manager:
-      <a href="{{ page.canonical_url }}cite.ris" download>RIS</a> ·
-      <a href="{{ page.canonical_url }}cite.bib" download>BibTeX</a>
-    </p>
-  </aside>
+  {% with cite_place = "content" %}{% include "partials/cite.html" %}{% endwith %}
 {% endblock %}

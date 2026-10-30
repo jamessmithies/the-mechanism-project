@@ -1,0 +1,19 @@
+{#- The citation box. Placed under the side navigation on wide screens and at the foot of the
+    page on narrow ones, where the side navigation folds into the menu drawer. -#}
+{% set cite = config.extra.citation %}
+{% set cite_title = cite.site_title if page.is_homepage else page.title %}
+{% set cite_date = (page.meta and page.meta.date) or cite.date %}
+<aside class="tm-cite tm-cite--{{ cite_place }}">
+  <p class="tm-cite__label">Cite this page</p>
+  <p>
+    {{ cite.author_family }}, {{ cite.author_given }}.
+    {%- if page.is_homepage %} <em>{{ cite.site_title }}</em>. {{ cite_date[:4] }}.
+    {%- else %} “{{ cite_title }}.” <em>{{ cite.site_title }}</em>, {{ cite_date[:4] }}.
+    {%- endif %}
+    <a href="{{ page.canonical_url }}">{{ page.canonical_url }}</a>.
+  </p>
+  <p class="tm-cite__files">
+    <a href="{{ page.canonical_url }}cite.ris" download>RIS</a> ·
+    <a href="{{ page.canonical_url }}cite.bib" download>BibTeX</a>
+  </p>
+</aside>
