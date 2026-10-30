@@ -1,4 +1,4 @@
-# About
+# About Me
 
 I am Professor of Digital Humanities and Director of the HASS Digital Research Hub (HRDH) at the
 Australian National University. Before ANU I was Professor of Digital Humanities in the Department
