@@ -114,10 +114,6 @@ so it gets the least:
   scored by a small local model that can return only a structured verdict and has no tools.
 - **Operating-system confinement.** An AppArmor profile limits what the agent's process can touch.
 
-The remaining risk is stated rather than hidden: instructions planted in a document I ingest could
-reach the agent inside a retrieved passage. The defences above limit what such an instruction could
-then do.
-
 ## Models
 
 | Model | Runs on | Used for |

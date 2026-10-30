@@ -47,10 +47,8 @@ deployed until its boundary is defined.
 
 ## 4. The closed universe, enforced by the network
 
-For its first months, the closed universe was a promise kept by configuration. Any process could
-open an outbound connection. Then the agent, following an instruction inside one of its own skill
-files, downloaded and installed a program from the internet. No control fired, because none
-existed at that layer.
+For its first months, the closed universe was a promise kept by configuration: any process could
+open an outbound connection, and nothing at the network layer would have stopped it.
 
 Now every machine denies outbound traffic by default. The only way out to the web is a filtering
 proxy on the cluster head, with a separate list of allowed destinations for each machine, and every
@@ -58,8 +56,7 @@ request it handles is logged.
 
 **Why.** A boundary that depends on every component behaving is not a boundary.
 
-**The cost.** Each new legitimate destination needs a deliberate addition, and installing software
-has its own authenticated route that the agent's machine can't use.
+**The cost.** Each new legitimate destination needs a deliberate addition.
 
 ## 5. Giving up "PDFs never leave my hardware"
 
@@ -134,20 +131,19 @@ I decommissioned it. Obsidian is the only writing surface again.
 **Why it's here.** Five hours of migration was the price of finding out. That is what building on
 real use is for: the system pushed back quickly, and the cheap answer was to leave.
 
-## 10. Letting the agent edit its own instructions
+## 10. Moving triage off the Jetson
 
-The agent's skills are the instructions it loads and trusts. They're also where it records what it
-learns about how the cluster actually behaves. A writable skill is the one place where a manipulated
-agent could plant something it would obey later.
+Each week the cluster harvests new records from PhilPapers, a large index of philosophy
+publications, and a model sorts them for relevance to my research tracks. The plan was for the
+small model on the Jetson to do this. It couldn't: the index returns every record *modified* that
+week, often more than 80,000, and at the Jetson's pace one week's file took four days.
 
-Locking them was tried. The skills became read-only, and the agent submitted proposed changes to a
-review queue. It worked as designed, and was withdrawn the same day, because I said plainly I wouldn't
-read the queue. An unread queue doesn't make learning safe; it stops learning and leaves machinery
-to maintain.
+Speed wasn't the only problem. The 8-billion-parameter model marked about 0.4% of records as
+relevant. The 32-billion-parameter model on the desktop marked about 21%. The small model was
+quietly discarding papers I would have wanted.
 
-So the agent edits its own skills, and every change comes back into version control as a diff I
-can see.
+Triage moved permanently to the desktop, which now skips records it has already seen.
 
-**Why.** The agent regularly finds things in its instructions that are wrong, and it is often the
-only party in a position to notice. Visibility was chosen over prevention because it's the control
-that will actually be exercised.
+**Why it's here.** It is the clearest case of finding the floor: a task the small model could run,
+but not well enough. The difference didn't show up as an error. It showed up as papers that never
+arrived.
