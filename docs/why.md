@@ -1,8 +1,8 @@
-# Why it was built this way
+# Why TM was built this way
 
 ## The method
 
-The Mechanism is an exercise in critical technical practice. I could have designed an AI research
+The Mechanism (TM) is an exercise in critical technical practice. I could have designed an AI research
 system on cloud infrastructure, where the machines and the network are out of reach behind someone
 else's interface. Instead I built it from what I already had: an existing desktop and a disused
 Raspberry Pi 4 cluster. Working directly with the physical machines and the network meant meeting
@@ -38,7 +38,7 @@ On cost, though, it compares better than it might seem. The project is funded by
 Scheme award (2024–2026). The found hardware cost nothing new, the additions were modest, and the
 cluster draws about 37 watts, under A$10 a month in electricity.
 Renting the equivalent, a server for the always-on services plus a GPU on demand for the heavy
-batches, costs several times that every month. I plan to run The Mechanism for at least five years.
+batches, costs several times that every month. I plan to run TM for at least five years.
 Spread over that span, the purchases, the electricity and an allowance for replacement parts come to
 a little over A$40 a month. Renting a server for the always-on services alone would cost A$40–80 a month,
 before any GPU time. That sum leaves out the time
@@ -46,7 +46,7 @@ spent building it, which was the point.
 
 Nor is it sealed off. Synthesis, the step where a frontier model reads retrieved passages and
 writes, goes to a commercial model through an API, and the reference library syncs through a cloud
-service. The Mechanism is local where locality teaches something or protects something, and it
+service. TM is local where locality teaches something or protects something, and it
 rents where it doesn't. It says so.
 
 ## What emerged along the way

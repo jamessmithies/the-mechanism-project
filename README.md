@@ -1,6 +1,6 @@
 # The Mechanism
 
-Technical documentation for The Mechanism: a Raspberry Pi and Jetson research cluster built from
+Technical documentation for The Mechanism (TM): a Raspberry Pi and Jetson research cluster built from
 found hardware as an exercise in critical technical practice, and the experimental platform for the
 monograph *Infrastructural Inflections: Critical Technical Practice and the Architecture of
 Knowledge*.

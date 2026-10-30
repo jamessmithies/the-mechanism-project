@@ -4,7 +4,7 @@
 
 ## A closed universe
 
-The Mechanism is designed as a closed universe. The aim was a closed, personal research tool, not
+The Mechanism (TM) is designed as a closed universe. The aim was a closed, personal research tool, not
 an experiment in an open world of agents roaming the internet. What enters it is chosen: my
 library, the feeds I follow, a handful of structured academic catalogues, and my own messages.
 Nothing arrives because an agent went looking for it.
@@ -23,7 +23,7 @@ narrow.
 
 ## The stance
 
-The Mechanism is a research cluster under one researcher's control, on home hardware. Every external
+TM is a research cluster under one researcher's control, on home hardware. Every external
 account it uses is a throwaway, created for the purpose, so a compromise means rotating a key and
 restoring from backup, not a disaster. That framing is deliberate. It is why the security here
 looks pragmatic rather than fortified.

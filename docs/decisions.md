@@ -2,7 +2,7 @@
 
 *As of October 2026.*
 
-The Mechanism keeps a record of its architectural decisions: what was decided, why, and its impact. More than thirty exist. These six show some key examples.
+The Mechanism (TM) keeps a record of its architectural decisions: what was decided, why, and its impact. More than thirty exist. These six show some key examples.
 
 ## 1. A closed universe, permanently
 

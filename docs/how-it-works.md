@@ -1,8 +1,8 @@
-# How it works
+# How TM works
 
-*As of October 2026. The Mechanism is evolving; this page describes its design rather than every detail. The full code is kept in a private repository.*
+*As of October 2026. The Mechanism (TM) is evolving; this page describes its design rather than every detail. The full code is kept in a private repository.*
 
-The easiest way to understand The Mechanism is to follow two things through it: a book on its way
+The easiest way to understand TM is to follow two things through it: a book on its way
 into the corpus, and a question on its way to an answer. Most of the design shows up along the
 way, including where the boundaries sit and why.
 
