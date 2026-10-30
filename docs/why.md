@@ -15,6 +15,19 @@ the small inference board took four days to process one week's batch. Where the 
 out, I added a few pieces: two Raspberry Pi 5s and an NVIDIA Jetson Orin Nano for local inference.
 Each addition marks a limit the build reached.
 
+## A prototype for thinking with
+
+Building it locally was also a way to understand what AI could do for humanities and social science
+research at all. When I started, there was no established model for that: no settled picture of how
+AI might fit into a full research workflow, from finding and triaging new work, through reading and
+annotation, to retrieval and writing. The question had to be explored, not looked up.
+
+A physical prototype made that exploration easier. Each idea could be tried on real machines against
+a real library, and the result kept, changed or discarded. Its scope could grow one piece at a time,
+from feed triage to a searchable corpus to an agent working across the whole workflow. Concept
+development done online, through diagrams, hosted services and other people's interfaces, would have
+been less tactile, and I suspect less productive. Here the ideas had to run before they counted.
+
 ## What it is not
 
 It is not cheaper, faster or simpler than renting. A cloud GPU would do the heavy work for roughly
