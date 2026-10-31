@@ -1,0 +1,732 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for a research cluster built from found hardware as an exercise in critical technical practice.">
+      
+      
+        <meta name="author" content="James Smithies">
+      
+      
+        <link rel="canonical" href="https://the-mechanism.org/decisions/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Decisions - The Mechanism</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+
+  <script data-goatcounter="https://jamessmithies.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  <meta name="DC.title" content="Decisions">
+  <meta name="DC.creator" content="Smithies, James">
+  <meta name="DC.date" content="2026-10-30">
+  <meta name="DC.language" content="en">
+  <meta name="DC.identifier" content="https://the-mechanism.org/decisions/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Mechanism (TM)">
+  <meta property="og:title" content="Decisions">
+  <meta property="og:url" content="https://the-mechanism.org/decisions/">
+  <meta name="author" content="James Smithies">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#decisions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The Mechanism" class="md-header__button md-logo" aria-label="The Mechanism" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Mechanism
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Decisions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jamessmithies/the-mechanism-project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    the-mechanism-project
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The Mechanism" class="md-nav__button md-logo" aria-label="The Mechanism" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The Mechanism
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jamessmithies/the-mechanism-project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    the-mechanism-project
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why TM was built this way
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How TM works
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Decisions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Decisions
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-weak-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      A weak justification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-closed-universe-of-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. A closed universe of sources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-local-models-for-volume-frontier-models-for-judgement" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Local models for volume, frontier models for judgement
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-one-key-one-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. One key, one machine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-closed-universe-enforced-by-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. The closed universe, enforced by the network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-allowing-pdfs-to-leave-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Allowing PDFs to leave the system
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-moving-triage-off-the-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Moving triage off the Jetson
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+
+
+
+
+<aside class="tm-cite tm-cite--nav">
+  <p class="tm-cite__label">Cite this page</p>
+  <p>
+    Smithies, James. “Decisions.” <em>The Mechanism (TM)</em>, 2026.
+    <a href="https://the-mechanism.org/decisions/">https://the-mechanism.org/decisions/</a>.
+  </p>
+  <p class="tm-cite__files">
+    <a href="https://the-mechanism.org/decisions/cite.ris" download>RIS</a> ·
+    <a href="https://the-mechanism.org/decisions/cite.bib" download>BibTeX</a>
+  </p>
+</aside>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-weak-justification" class="md-nav__link">
+    <span class="md-ellipsis">
+      A weak justification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-closed-universe-of-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. A closed universe of sources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-local-models-for-volume-frontier-models-for-judgement" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Local models for volume, frontier models for judgement
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-one-key-one-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. One key, one machine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-closed-universe-enforced-by-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. The closed universe, enforced by the network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-allowing-pdfs-to-leave-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Allowing PDFs to leave the system
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-moving-triage-off-the-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Moving triage off the Jetson
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="decisions">Decisions<a class="headerlink" href="#decisions" title="Permanent link">&para;</a></h1>
+<p><em>As of October 2026. The Mechanism (TM) is evolving; this page describes key design decisions rather than every detail. The full code (including all design decisions) is kept in a private repository for security purposes.</em></p>
+<h2 id="a-weak-justification">A weak justification<a class="headerlink" href="#a-weak-justification" title="Permanent link">&para;</a></h2>
+<p>If I was forced to provide a single justification for TM's continued existence I would point to the balance between the contraption's closed universe of scholarly sources and the power of persistent agentic AI: the balance is difficult to achieve but compelling. My suspicion is that AI-enabled humanities research requires a radical narrowing to high quality sources tailored to the individual researcher, coupled with persistent agentic AI that can guide, critique, and learn alongside the researcher.  </p>
+<p>This requires a lot more than straight-forward "chat with my pdfs" functionality, but significantly less than access to the entire World Wide Web. TM keeps the researcher firmly at the centre of epistemological and methodological decision-making but with access to the full range of their own sources (primary, secondary, RSS, social media) along with a consistent 'mentor and guide' and a range of configurable 'critical friends'. By keeping as much processing offline as possible and retaining detailed records in offline Markdown files I feel in control. I could continue to work on my monograph project even in the worst case scenario where access to frontier AI is entirely disabled. </p>
+<p>Many researchers will also want to choose small and open weight models for some tasks, limiting information leakage to hyperscale AI vendors and reducing the environmental impact of their work as far as possible. Frontier AI services are only accessed intermittently by TM, for advanced text processing and occasional 1-1 discussion sessions and workshops with multiple AI models. Because core TM data only consists of Markdown files and a Zotero library, I could easily migrate my research to another platform if necessary. </p>
+<p>This portability and transparency extends to techncial aspects of the project too. I keep a record of architectural decisions in Markdown files in a private code repository, produced as a natural part of my software engineering process but also useful for auto-ethnography in the tradition of Science and Technology Studies (STS). The repository contains extensive documentation alongside Ansible playbooks that document as well as deploy infrastructure as code to TM. More than thirty architectural decisions are stored in the repository. Six examples are listed below.</p>
+<h2 id="1-a-closed-universe-of-sources">1. A closed universe of sources<a class="headerlink" href="#1-a-closed-universe-of-sources" title="Permanent link">&para;</a></h2>
+<p>Every external account is a throwaway, and the agent's source inputs are limited to my Zotero library, the RSS feeds I
+follow, my own messages, and a few structured academic catalogues such as PhilPapers. There is no arbitrary web
+fetching, and no tool to support it.</p>
+<p><strong>Why.</strong> An autonomous agent with network access needs a bounded blast radius, especially on a home network, and my research needs to be protected from information leakage and unwanted activity by agents. Throwaway accounts make any compromise a matter of
+rotating a key and restoring from backup.</p>
+<p><strong>The cost.</strong> The agent can't discover new sources on its own. That is treated as a feature: every
+new source, from a book to an article or RSS feed, has to be approved by me. Browser automation is permanently rejected for the same reason. This constraint has turned into one of the system's best affordances. If I need an agent with access to the world I use a standard AI platform.</p>
+<h2 id="2-local-models-for-volume-frontier-models-for-judgement">2. Local models for volume, frontier models for judgement<a class="headerlink" href="#2-local-models-for-volume-frontier-models-for-judgement" title="Permanent link">&para;</a></h2>
+<p>Work is facilitated by models appropriate to the task. A small model on the Jetson handles high-volume scoring and triage.
+A larger model on the desktop GPU describes every passage and classifies new publications. Frontier
+models, reached through an API, provide synthesis and tasks requiring reasoning depth. For structured
+discussion sessions, the agent convenes one frontier model from each of three families (Anthropic,
+Google and OpenAI) so the perspectives genuinely differ.</p>
+<p><strong>Why.</strong> Sending everything to a frontier model would be slow and expensive, and full texts would
+leave my hardware. On the other hand, running everything locally would sacrifice quality in key areas.</p>
+<p><strong>The cost.</strong> Two tiers of local hardware to look after (inside and outside the VLAN), and a rule that model versions are pinned
+exactly. Now that workflow bugs have been ironed out those constraints are not noticeable.</p>
+<h2 id="3-one-key-one-machine">3. One key, one machine<a class="headerlink" href="#3-one-key-one-machine" title="Permanent link">&para;</a></h2>
+<p>Each credential lives on exactly one machine. Everything else reaches the service through a small
+bridge that lets it use the service without ever seeing the key.</p>
+<p><strong>Why.</strong> A compromised agent can search the library, but not copy the key and use it elsewhere.</p>
+<p><strong>The cost.</strong> More small services to run, and a rule that no new credential-bearing service is
+deployed until its boundary is defined. In practice I never notice the boundaries between the services; usage is seamless despite the agents being constrained.</p>
+<h2 id="4-the-closed-universe-enforced-by-the-network">4. The closed universe, enforced by the network<a class="headerlink" href="#4-the-closed-universe-enforced-by-the-network" title="Permanent link">&para;</a></h2>
+<p>Every machine denies outbound traffic by default. The only way out to the web is a filtering
+proxy on the cluster head, with a separate list of allowed destinations for each machine, and every
+request it handles is logged. The feed reader is the one exception. Feeds can come from anywhere, so
+it may request any destination, but only through the proxy.</p>
+<p><strong>Why.</strong> I have complete control over what sources agents have access to, and what problems they can introduce.</p>
+<p><strong>The cost.</strong> Each new source needs a deliberate addition. In practice I find I have all the sources I need so this is not an issue.</p>
+<h2 id="5-allowing-pdfs-to-leave-the-system">5. Allowing PDFs to leave the system<a class="headerlink" href="#5-allowing-pdfs-to-leave-the-system" title="Permanent link">&para;</a></h2>
+<p>The original rule was that copyrighted full texts would never leave my own machines. In practice
+the Zotero library was already storing every attached PDF on cloud servers, though, and keeping the
+rule meant filing each book twice: once in the Zotero library, once in a folder on the desktop.</p>
+<p>I decided that the Zotero library's cloud storage is a trusted channel. The desktop now fetches PDFs from the library
+itself. Filing a book in my Zotero library is the only step needed to get it into TM.</p>
+<p><strong>What didn't change.</strong> Extraction, description and embedding still happen locally. No full text is
+sent to a cloud model.</p>
+<p><strong>Why it's here.</strong> It shows what partial sovereignty looks like in practice: considered tradeoffs made on my own judgement and with awareness of the practical impact.</p>
+<h2 id="6-moving-triage-off-the-jetson">6. Moving triage off the Jetson<a class="headerlink" href="#6-moving-triage-off-the-jetson" title="Permanent link">&para;</a></h2>
+<p>Each week the cluster harvests new records from PhilPapers, a large index of philosophy
+publications, and a model sorts them for relevance to my research tracks. The plan was for the
+small model on the Jetson to do this. It couldn't: the index returns every record <em>modified</em> that
+week, often more than 80,000, and at the Jetson's pace one week's file took four days.</p>
+<p>Speed wasn't the only problem. The 8-billion-parameter model marked about 0.4% of records as
+relevant. The 32-billion-parameter model on the desktop marked about 21%. The small model was
+quietly discarding papers I would have wanted. I relented and moved triage to my desktop computer off TM VLAN.</p>
+<p><strong>Why it's relevant.</strong> It is the clearest case of finding a performance floor: this was a task the small model could run,
+but not well enough. By moving up to a more powerful but still local machine, I compromised on system complexity but not data sovereignty.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 James Smithies<br> Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · site code under <a href="https://github.com/jamessmithies/the-mechanism-project/blob/main/LICENSE-CODE">MIT</a>
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

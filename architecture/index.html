@@ -1,0 +1,856 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for a research cluster built from found hardware as an exercise in critical technical practice.">
+      
+      
+        <meta name="author" content="James Smithies">
+      
+      
+        <link rel="canonical" href="https://the-mechanism.org/architecture/">
+      
+      
+        <link rel="prev" href="../how-it-works/">
+      
+      
+        <link rel="next" href="../decisions/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Architecture - The Mechanism</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+
+  <script data-goatcounter="https://jamessmithies.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  <meta name="DC.title" content="Architecture">
+  <meta name="DC.creator" content="Smithies, James">
+  <meta name="DC.date" content="2026-10-30">
+  <meta name="DC.language" content="en">
+  <meta name="DC.identifier" content="https://the-mechanism.org/architecture/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Mechanism (TM)">
+  <meta property="og:title" content="Architecture">
+  <meta property="og:url" content="https://the-mechanism.org/architecture/">
+  <meta name="author" content="James Smithies">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The Mechanism" class="md-header__button md-logo" aria-label="The Mechanism" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Mechanism
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jamessmithies/the-mechanism-project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    the-mechanism-project
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The Mechanism" class="md-nav__button md-logo" aria-label="The Mechanism" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The Mechanism
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jamessmithies/the-mechanism-project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    the-mechanism-project
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why TM was built this way
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How TM works
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-closed-universe" class="md-nav__link">
+    <span class="md-ellipsis">
+      A closed universe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-stance" class="md-nav__link">
+    <span class="md-ellipsis">
+      The stance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      The network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credentials-and-bridges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credentials and bridges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      The agent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software and operations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+
+
+
+
+<aside class="tm-cite tm-cite--nav">
+  <p class="tm-cite__label">Cite this page</p>
+  <p>
+    Smithies, James. “Architecture.” <em>The Mechanism (TM)</em>, 2026.
+    <a href="https://the-mechanism.org/architecture/">https://the-mechanism.org/architecture/</a>.
+  </p>
+  <p class="tm-cite__files">
+    <a href="https://the-mechanism.org/architecture/cite.ris" download>RIS</a> ·
+    <a href="https://the-mechanism.org/architecture/cite.bib" download>BibTeX</a>
+  </p>
+</aside>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-closed-universe" class="md-nav__link">
+    <span class="md-ellipsis">
+      A closed universe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-stance" class="md-nav__link">
+    <span class="md-ellipsis">
+      The stance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      The network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credentials-and-bridges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credentials and bridges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      The agent
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software and operations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<p><em>As of October 2026. The Mechanism (TM) is evolving; this page describes its high-level architecture rather than every detail. The full code is kept in a private repository for security purposes.</em></p>
+<h2 id="a-closed-universe">A closed universe<a class="headerlink" href="#a-closed-universe" title="Permanent link">&para;</a></h2>
+<p>The Mechanism (TM) is designed as a closed universe. The aim was a closed, personal research tool, not
+an experiment in an open world of agents roaming the internet. I determine what enters the system: my
+library, the feeds I follow, a handful of structured academic catalogues, and my own messages.
+Nothing is ingested because an agent decided to search the World Wide Web for it.</p>
+<p>That closure is a research choice as much as a security one. It balances the power of agentic AI
+with a degree of epistemic control and definition that the open internet can't offer. I know and tightly control the epistemic boundaries of the system, ensuring any conceptual work I do with AI agents is defiend on my terms. When an agent answers a
+question, the boundaries of its Umwelt (world view) are boundaries I set and epxand or reduce as required for my purposes.</p>
+<p>Inside that universe, data moves according to a <em>rivers of data</em> model defined by the hardware and network I deisgned and implemented myself. The cluster head is the primary 'headwaters': the point where scheduled work starts, where files are relayed between machines, and
+through which everything entering or leaving passes. From there data flows down defined channels to
+the machines and agents that use it, and out to the internet via tightly defined channels such as Zotero or PhilPapers. Each agent is constrained to the data relevant to its function, and reaches nothing else. </p>
+<h2 id="the-stance">The stance<a class="headerlink" href="#the-stance" title="Permanent link">&para;</a></h2>
+<p>TM is a research cluster under one researcher's control, on home hardware. Every external
+account it uses is a throwaway, created for the purpose, so a compromise means rotating a key and
+restoring from backup, not a disaster. </p>
+<p><strong>What the architecture defends against:</strong></p>
+<ul>
+<li><strong>A rogue agent.</strong> The main concern is an AI agent that reads hostile text, is manipulated by it,
+  and then tries to damage data, reach credentials it shouldn't have, or send data out.</li>
+<li><strong>Credential leaks</strong> from a machine's filesystem.</li>
+<li><strong>Malformed input</strong> that crashes a service.</li>
+<li><strong>My own mistakes.</strong> Through backups and rollback.</li>
+</ul>
+<p><strong>What the architecture doesn't try to defend against:</strong> a determined state-level adversary deploying social as well as technical techniques, physical access to the
+machines, compromised upstream software, very slow covert exfiltration, or the compromise of Cloudflare, which sits in front of it.</p>
+<h2 id="the-network">The network<a class="headerlink" href="#the-network" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Internet
+        CF["Cloudflare&lt;br/&gt;tunnel and access control"]
+        APIs["Allowed services&lt;br/&gt;(library, model APIs,&lt;br/&gt;academic catalogues)"]
+        TG["Telegram"]
+        ME["Me, in a browser"]
+    end
+    subgraph Home["Home network"]
+        DT["Desktop&lt;br/&gt;(off the cluster network)"]
+        subgraph VLAN["Cluster network (isolated)"]
+            HEAD["Cluster head&lt;br/&gt;outbound proxy, relay,&lt;br/&gt;tunnel endpoint"]
+            AG["Agent node"]
+            JET["Jetson"]
+            LIB["Library node"]
+            FEED["Feed reader"]
+        end
+    end
+    ME --&gt;|"one-time code"| CF
+    CF &lt;--&gt;|"outbound tunnel only"| HEAD
+    HEAD --&gt;|"dashboard"| AG
+    HEAD --&gt;|"allowlisted requests"| APIs
+    AG --&gt;|"polls"| TG
+    DT --&gt;|"files only"| HEAD</code></pre>
+<ul>
+<li><strong>An isolated network.</strong> The cluster sits on its own VLAN, separated from the rest of the home
+  network by rules on the router. The desktop, which does the heavy processing, is kept outside it
+  and reaches the cluster only by depositing files.</li>
+<li><strong>No open ports.</strong> Nothing on the cluster accepts connections from the internet. Remote access to
+  the web interfaces runs through azero trust tunnel that the cluster opens outwards, behind a one-time code.</li>
+<li><strong>Every machine denies by default, in both directions.</strong> Inside the cluster network, traffic
+  between machines is governed by each machine's own firewall, which allows only the specific
+  connections that machine needs.</li>
+<li><strong>One way out.</strong> No machine reaches the internet directly. Outbound web requests go through a
+  filtering proxy on the cluster head, and each machine has its own short list of permitted
+  destinations. Anything else is refused and logged. The feed reader is the exception: feeds can
+  come from anywhere, so its requests may go to any destination, but they still pass through the
+  proxy and are logged.</li>
+</ul>
+<h2 id="credentials-and-bridges">Credentials and bridges<a class="headerlink" href="#credentials-and-bridges" title="Permanent link">&para;</a></h2>
+<p>Each credential lives on one machine, and the rest of the cluster reaches the service it unlocks
+through a small bridge that exposes only the operations needed.</p>
+<table>
+<thead>
+<tr>
+<th>Credential</th>
+<th>Lives on</th>
+<th>Other nodes get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reference library key</td>
+<td>Library node</td>
+<td>A bridge with a fixed set of read and write routes</td>
+</tr>
+<tr>
+<td>Feed reader key</td>
+<td>Feed reader</td>
+<td>A bridge for managing subscriptions and reading entries</td>
+</tr>
+<tr>
+<td>Model and messaging keys</td>
+<td>The agent node, in a file only the agent's user can read, and the workflow engine on the cluster head, for the weekly digest and notifications</td>
+<td>Nothing: no other machine needs them</td>
+</tr>
+<tr>
+<td>Infrastructure secrets</td>
+<td>Encrypted in the configuration repository</td>
+<td>Decrypted only when the configuration is applied</td>
+</tr>
+</tbody>
+</table>
+<p>The desktop stores its own library key, for fetching PDFs. It sits off the cluster network, so a
+compromised cluster machine can't reach it.</p>
+<h2 id="the-agent">The agent<a class="headerlink" href="#the-agent" title="Permanent link">&para;</a></h2>
+<p>The agent is <a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a>, an open-source framework
+from Nous Research, running Claude Opus 5.5 through OpenRouter. I work with it mostly in its browser
+dashboard and sometimes over Telegram. It is the part of the system most exposed to what it reads,
+so it gets the least:</p>
+<ul>
+<li><strong>Its own machine and its own user,</strong> with no SSH key. The cluster head refuses SSH connections
+  from it in any case.</li>
+<li><strong>Four routes into the cluster,</strong> each to a narrow service: the read-only corpus API, the library
+  bridge, the feed bridge, and a bridge for writing notes. It can't reach the models or the vector
+  store behind the corpus API.</li>
+<li><strong>A closed set of inputs.</strong> It doesn't fetch arbitrary web pages. What reaches it is my own
+  messages, structured results from a handful of academic catalogues, passages from the corpus, and
+  entries from the feeds I follow. The weekly digest goes a step further: feed items are first
+  scored by a small local model that can return only a structured verdict and has no tools.</li>
+<li><strong>Operating-system confinement.</strong> An AppArmor profile limits what the agent's process can touch.</li>
+</ul>
+<h2 id="models">Models<a class="headerlink" href="#models" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Runs on</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3 8B</td>
+<td>Jetson</td>
+<td>Triage: scoring feed items for relevance to each research track</td>
+</tr>
+<tr>
+<td>Qwen3 32B</td>
+<td>Desktop GPU</td>
+<td>Describing each passage of every ingested text; triaging new publication records</td>
+</tr>
+<tr>
+<td>nomic-embed-text</td>
+<td>Jetson</td>
+<td>Turning passages and questions into vectors for search</td>
+</tr>
+<tr>
+<td>Claude Opus 5.5, through OpenRouter</td>
+<td>Anthropic's cloud</td>
+<td>The agent: conversation, and answering questions from retrieved passages; primary voice in Workshop sessions</td>
+</tr>
+<tr>
+<td>Claude Sonnet 5, through OpenRouter</td>
+<td>Anthropic's cloud</td>
+<td>Curating the weekly digest from the items Qwen3 8B has scored</td>
+</tr>
+<tr>
+<td>Gemini 3.8 Flash, through OpenRouter</td>
+<td>Google's cloud</td>
+<td>Workshop sessions: devil's advocate, challenging assumptions and finding weaknesses</td>
+</tr>
+<tr>
+<td>GPT-6 Sol Pro, through OpenRouter</td>
+<td>OpenAI's cloud</td>
+<td>Workshop sessions: close reader, focusing on conceptual precision and terminology</td>
+</tr>
+</tbody>
+</table>
+<h2 id="software-and-operations">Software and operations<a class="headerlink" href="#software-and-operations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Infrastructure as code.</strong> Every cluster machine is configured from one repository with Ansible.
+  Services run in Docker containers or as systemd units, and the desktop's jobs run from the same
+  repository under cron.</li>
+<li><strong>The main components</strong> are all open source: Hermes Agent (the agent), Chroma (vector store),
+  Ollama (local models), Syncthing (file transport), n8n (scheduled workflows), Miniflux (feeds),
+  PyMuPDF (text extraction), and Prometheus and Grafana (monitoring). Zotero holds the reference
+  library, and Cloudflare provides the tunnel and access control.</li>
+<li><strong>Backups</strong> run daily to local storage and weekly, encrypted, to cloud object storage. Rollback is
+  treated as a normal operation, not an emergency.</li>
+<li><strong>Integrity reporting.</strong> An hourly check compares what the library says the corpus should contain
+  with what the vector store holds, and reports any drift. A weekly reconciliation also compares the
+  live library's collections directly with the store.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 James Smithies<br> Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · site code under <a href="https://github.com/jamessmithies/the-mechanism-project/blob/main/LICENSE-CODE">MIT</a>
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

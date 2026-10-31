@@ -1,0 +1,928 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for a research cluster built from found hardware as an exercise in critical technical practice.">
+      
+      
+        <meta name="author" content="James Smithies">
+      
+      
+        <link rel="canonical" href="https://the-mechanism.org/how-it-works/">
+      
+      
+        <link rel="prev" href="../why/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>How TM works - The Mechanism</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+
+  <script data-goatcounter="https://jamessmithies.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  <meta name="DC.title" content="How TM works">
+  <meta name="DC.creator" content="Smithies, James">
+  <meta name="DC.date" content="2026-10-30">
+  <meta name="DC.language" content="en">
+  <meta name="DC.identifier" content="https://the-mechanism.org/how-it-works/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Mechanism (TM)">
+  <meta property="og:title" content="How TM works">
+  <meta property="og:url" content="https://the-mechanism.org/how-it-works/">
+  <meta name="author" content="James Smithies">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-tm-works" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The Mechanism" class="md-header__button md-logo" aria-label="The Mechanism" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The Mechanism
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How TM works
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jamessmithies/the-mechanism-project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    the-mechanism-project
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The Mechanism" class="md-nav__button md-logo" aria-label="The Mechanism" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    The Mechanism
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jamessmithies/the-mechanism-project" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    the-mechanism-project
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why TM was built this way
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How TM works
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    How TM works
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      The machines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      An example workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-questions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      A question's workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-examples-demonstrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the examples demonstrate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engineering-and-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Engineering and deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n8n" class="md-nav__link">
+    <span class="md-ellipsis">
+      n8n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cockpit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cockpit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miniflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Miniflux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-zotero-group-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Zotero group library
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+
+
+
+
+<aside class="tm-cite tm-cite--nav">
+  <p class="tm-cite__label">Cite this page</p>
+  <p>
+    Smithies, James. “How TM works.” <em>The Mechanism (TM)</em>, 2026.
+    <a href="https://the-mechanism.org/how-it-works/">https://the-mechanism.org/how-it-works/</a>.
+  </p>
+  <p class="tm-cite__files">
+    <a href="https://the-mechanism.org/how-it-works/cite.ris" download>RIS</a> ·
+    <a href="https://the-mechanism.org/how-it-works/cite.bib" download>BibTeX</a>
+  </p>
+</aside>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      The machines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      An example workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-questions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      A question's workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-examples-demonstrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the examples demonstrate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engineering-and-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Engineering and deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n8n" class="md-nav__link">
+    <span class="md-ellipsis">
+      n8n
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cockpit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cockpit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miniflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Miniflux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-zotero-group-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Zotero group library
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="how-tm-works">How TM works<a class="headerlink" href="#how-tm-works" title="Permanent link">&para;</a></h1>
+<p><em>As of October 2026. The Mechanism (TM) is evolving; this page provides an overview of some (but not all) of its functionality. The full code is kept in a private repository for security purposes.</em></p>
+<p>The easiest way to understand TM is to explore workflow examples. The two provided below are two of several I use on a regular basis.</p>
+<h2 id="the-machines">The machines<a class="headerlink" href="#the-machines" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Machine</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Desktop</strong> (GPU workstation)</td>
+<td>The heavy lifting: fetching PDFs, extracting text, and running Qwen3 32B to describe each passage. Kept off the cluster network by design.</td>
+</tr>
+<tr>
+<td><strong>Cluster head</strong> (Raspberry Pi 5)</td>
+<td>Coordination: scheduled workflows, monitoring, backups, the web front door, the relay that carries files between machines, and the proxy every outbound request must pass through.</td>
+</tr>
+<tr>
+<td><strong>Agent node</strong> (Raspberry Pi 5)</td>
+<td>The research agent I talk to: <a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a>, an open-source agent framework from Nous Research. It runs on its own machine, as its own user, and holds no keys to the rest of the cluster.</td>
+</tr>
+<tr>
+<td><strong>Jetson</strong> (NVIDIA Orin Nano)</td>
+<td>The corpus itself: the Chroma vector store, the nomic-embed-text embedding model, Qwen3 8B for triage, all served locally through Ollama, and a read-only API in front of them.</td>
+</tr>
+<tr>
+<td><strong>Library node</strong> (Raspberry Pi 4)</td>
+<td>The only machine in the cluster holding the reference library's key. It harvests annotations and serves a narrow bridge for library writes.</td>
+</tr>
+<tr>
+<td><strong>Other Raspberry Pi 4s</strong></td>
+<td>A feed reader, a social media monitor, and three spares kept powered off.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="an-example-workflow">An example workflow<a class="headerlink" href="#an-example-workflow" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+    Z["Reference library&lt;br/&gt;(Zotero)"] --&gt;|"nightly sync"| D["Desktop&lt;br/&gt;fetch, extract,&lt;br/&gt;describe passages"]
+    D --&gt;|"files only"| H["Cluster head&lt;br/&gt;relay"]
+    H --&gt;|"files only"| J["Jetson&lt;br/&gt;embed and store"]
+    Z --&gt;|"hourly"| L["Library node&lt;br/&gt;harvest annotations"]
+    L --&gt;|"files only"| H
+    J --&gt;|"read-only search"| A["Agent node&lt;br/&gt;Hermes Agent"]
+    A &lt;--&gt;|"notes bridge"| O["Obsidian&lt;br/&gt;my notes"]
+    O --&gt;|"notes and drafts"| W["Writing&lt;br/&gt;Markdown and Quarto"]
+    Z -.-&gt;|"references"| W</code></pre>
+<ol>
+<li><strong>I file the book or article.</strong> In the reference library I add a record with its PDF to the <code>vault</code>
+   collection of a research track. A track is any top-level collection that has a <code>vault</code> child,
+   so the library's own structure is the system's vocabulary. A new track needs no code change.</li>
+<li><strong>The desktop fetches it.</strong> Every night at 02:00 a sync on the desktop reads the library and
+   fetches new PDFs into a local cache. If the library contradicts itself, for instance when an
+   item has been trashed but its PDF hasn't, the sync refuses to publish that track's changes
+   rather than guess. It reports the problem via Telegram and leaves everything as it was.</li>
+<li><strong>The text is extracted and checked.</strong> Every six hours the desktop extracts the text. Scanned
+   PDFs with no text layer, and texts too thin to be the whole work (a book yielding fewer than 40
+   passages, for example), are set aside with a reason, not quietly ingested.</li>
+<li><strong>Each passage is described.</strong> The text is cut into overlapping passages of about 3,000
+   characters. For each one, Qwen3 32B, running on the desktop's GPU, writes a one-sentence
+   description of what the passage is about, which makes it much easier to find later. None of
+   this leaves my hardware.</li>
+<li><strong>Files travel between machines, commands don't.</strong> The results are written as plain files, and Syncthing
+   carries them through the cluster head to the Jetson. The channel moves
+   files only, so nothing on the desktop can instruct anything in the cluster.</li>
+<li><strong>The Jetson stores it.</strong> Within a minute the Jetson notices the new file, embeds each passage
+   with nomic-embed-text, and stores it in that track's Chroma collection with its bibliographic
+   details.</li>
+<li><strong>Annotations follow separately.</strong> Every hour the library node harvests my highlights and notes
+   from the library and sends them the same way, into a collection of their own.</li>
+<li><strong>The work continues in Obsidian.</strong> My primary work with TM is collected in Obsidian notes: plain Markdown files holding lab notes, transcripts
+   of discussion sessions, and drafts. The agent can reach them through a narrow bridge on the cluster
+   head, allowing me to discuss my lab notes, results of previous workshops, and planning and concept development notes for the monograph with Hermes. I can also use Hermes to tidy up or rearrange my notes, or critique my progress and identify errors in my thinking. The Obsidian sync service keeps a copy of all of those notes on my computers, iPad and iPhone. </li>
+<li><strong>Writing.</strong> I write in Markdown in a separate text editor (and old version of Sublime text), using Quarto (with Zotero) for referencing and footnoting, publishing to .docx or .pdf as required. This is a key step in the process, separating the act of writing from the collaborative human-AI research and concept development undertaken in TM.</li>
+</ol>
+<h2 id="a-questions-workflow">A question's workflow<a class="headerlink" href="#a-questions-workflow" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    actor Me
+    participant C as Cloudflare&lt;br/&gt;tunnel and access check
+    participant A as Hermes Agent&lt;br/&gt;agent node
+    participant V as Jetson&lt;br/&gt;read-only API
+    participant F as Claude&lt;br/&gt;via OpenRouter
+    Me-&gt;&gt;C: question, in the browser dashboard
+    C-&gt;&gt;A: through the outbound tunnel
+    A-&gt;&gt;V: search the corpus
+    V--&gt;&gt;A: up to 30 passages, with sources
+    A-&gt;&gt;F: question and passages, via the outbound proxy
+    F--&gt;&gt;A: answer
+    A--&gt;&gt;C: answer with citations
+    C--&gt;&gt;Me: answer</code></pre>
+<ol>
+<li><strong>I ask.</strong> Usually in the agent's browser dashboard. Cloudflare checks it's me with a one-time
+   code, then passes the request down a tunnel the cluster itself opened, so nothing on the cluster
+   listens for connections from the internet. I can also message the agent on Telegram, which it
+   polls and which accepts messages only from my account. I use Telegram to interact with Hermes quite frequently when I'm on the go, asking it to write notes to Obsidian or add items to Zotero if necessary.</li>
+<li><strong>The agent searches.</strong> It sends the question to the Jetson's API. That API is read-only and is
+   the agent's only route to the corpus: it can't reach the store or the models behind it directly.</li>
+<li><strong>The Jetson retrieves.</strong> It embeds the question with the same model used for the passages,
+   finds the nearest ones, and returns at most 30, each with its source.</li>
+<li><strong>A frontier model synthesises.</strong> The agent sends the question and those passages, never whole
+   books, to Claude Opus 5.5 through OpenRouter. The request leaves through the cluster head's
+   outbound proxy, which allows the agent only the destinations it needs.</li>
+<li><strong>I get an answer with citations</strong> via either the Hermes dashboard or Telegram, depending where I asked.</li>
+</ol>
+<h2 id="what-the-examples-demonstrate">What the examples demonstrate<a class="headerlink" href="#what-the-examples-demonstrate" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Local where it matters.</strong> Whole texts are fetched, extracted, described, embedded and stored on
+  machines I own. A frontier model only ever sees the few passages a question retrieves.</li>
+<li><strong>One key, one machine.</strong> Each credential lives on the one machine that needs it. The agent, the
+  part most exposed to what it reads, holds the minimum authority to do what it needs to.</li>
+<li><strong>Narrow channels.</strong> Files move one way between the desktop and the cluster in a 'rivers of data' model. The agent reaches the
+  corpus through a read-only API, and every machine reaches the internet only through the proxy.</li>
+<li><strong>Refusing to guess.</strong> When inputs (i.e. scholarly sources) contradict each other, the system stops and alerts me to the discrepancy so I can resolve it myself.</li>
+<li><strong>Scientific transparency.</strong> Zotero remains the canonical storage system for sources and annotations. Outputs from AI sessions are either ephemeral, or captured in lab notes or workshop summaries in Markdown if I ask for them.</li>
+</ul>
+<h2 id="engineering-and-deployment">Engineering and deployment<a class="headerlink" href="#engineering-and-deployment" title="Permanent link">&para;</a></h2>
+<p>I use VS Code for software engineering, with Claude Code and the <a href="https://openspec.dev/">OpenSpec</a> framework. The code repository is kept private for security purposes. It contains detailed documentation of the network and security architecture, of necessity given the complexity of the system. </p>
+<h2 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">&para;</a></h2>
+<p>Most maintenance is performed in the same way as engineering and deployment, via SSH into the head node and subsequent SSH into nodes with deployment via Ansible, but I have UI access too, via four tools. n8n, Cockpit and Miniflux run on the cluster, behind the
+same tunnel and one-time code as the agent's dashboard. The Zotero group library is a hosted service. </p>
+<h3 id="n8n">n8n<a class="headerlink" href="#n8n" title="Permanent link">&para;</a></h3>
+<p><a href="https://n8n.io">n8n</a> is the workflow engine on the cluster head. It runs six workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>When</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weekly digest</td>
+<td>Fridays</td>
+<td>Takes the week's unread feed items, has Qwen3 8B score them, has Claude Sonnet 5 curate the relevant ones, publishes a digest page, and sends me a summary on Telegram.</td>
+</tr>
+<tr>
+<td>Local backup</td>
+<td>Daily</td>
+<td>Backs the cluster up to local storage.</td>
+</tr>
+<tr>
+<td>Cloud backup</td>
+<td>Sundays</td>
+<td>Sends an encrypted backup to cloud object storage.</td>
+</tr>
+<tr>
+<td>Update check</td>
+<td>Monthly</td>
+<td>Compares the pinned versions of deployed services with the latest releases and reports on Telegram. Upgrades are done by hand.</td>
+</tr>
+<tr>
+<td>Security reminder</td>
+<td>Quarterly</td>
+<td>Reminds me on Telegram to run the security review. It checks nothing itself.</td>
+</tr>
+<tr>
+<td>Save paper</td>
+<td>On request</td>
+<td>Checks whether a paper is open access, writes a short summary if it is, files it in a track's queue in the library, and confirms on Telegram.</td>
+</tr>
+</tbody>
+</table>
+<p>Telegram delivers digest counts at each stage, so I know when new material is available to review. n8n stores the model and messaging keys and can make outbound requests from the cluster head, so a session there is powerful. It stays behind the one-time code.</p>
+<h3 id="cockpit">Cockpit<a class="headerlink" href="#cockpit" title="Permanent link">&para;</a></h3>
+<p><a href="https://cockpit-project.org">Cockpit</a> is a web console for Linux servers, installed on every machine
+in the cluster. It shows each machine's services, logs, and storage in a browser and includes a
+terminal. Its console provides a UI into each machine, including terminal access. </p>
+<p>Cockpit provides root-level administration, so it is treated the same as n8n. Only the cluster head's
+console is reachable through the tunnel. The others accept connections from the cluster head alone.</p>
+<h3 id="miniflux">Miniflux<a class="headerlink" href="#miniflux" title="Permanent link">&para;</a></h3>
+<p><a href="https://miniflux.app">Miniflux</a> is the feed reader, installed on its own Raspberry Pi 4 with about 90 feeds
+sorted into 13 categories. Each category maps to a research track, which tells the weekly digest what
+to judge an item against. Two small helpers sit beside it for sources that don't offer a usable feed:
+RSSHub, and a proxy for Springer's feeds.</p>
+<p>Maintenance here is mostly editorial: adding and removing feeds, and keeping the categories in line
+with the tracks. The agent can add and remove feeds too, through its bridge, without seeing the key. This allows me to add feeds to TM using Telegram while I'm on the go.</p>
+<p>Miniflux entries are marked read only once a run has dealt with them. If a backlog builds
+up, I mark feeds as read in Miniflux rather than relying on pipeline automation.</p>
+<h3 id="the-zotero-group-library">The Zotero group library<a class="headerlink" href="#the-zotero-group-library" title="Permanent link">&para;</a></h3>
+<p>The TM corpus is defined by a <a href="https://www.zotero.org">Zotero</a> group library called The Mechanism, not by
+my personal library. My personal library holds about 11,000 items gathered over twenty years and
+I don't want AI agents to have write access to it. The group library is working material that can be lost if an agent makes a mistake. The agent's bridge is bound
+to the group library alone, using its own dedicated API key, and the library is private.</p>
+<p>The two main tracks in Zotero each have a queue, where saved papers and selections from the RSS digest are placed for manual processing (i.e. for when I have the time to review and/or read and annotate them). Nothing enters the corpus until it is filed into a track's <code>vault</code> collection, so the system relies on me manually filing sources: nothing enters TM without my manual intervention. The other collections are there for my own organisation; the system ignores them except when it is harvesting annotations.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 James Smithies<br> Text licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · site code under <a href="https://github.com/jamessmithies/the-mechanism-project/blob/main/LICENSE-CODE">MIT</a>
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
