@@ -1,6 +1,6 @@
 # Decisions
 
-*As of October 2026.*
+*As of October 2026. The Mechanism (TM) is evolving; this page describes key design decisions rather than every detail. The full code (including all design decisions) is kept in a private repository for security purposes.*
 
 ## A weak justification
 If I was forced to provide a single justification for TM's continued existence I would point to the balance between the contraption's closed universe of scholarly sources and the power of persistent agentic AI: the balance is difficult to achieve but compelling. My suspicion is that AI-enabled humanities research requires a radical narrowing to high quality sources tailored to the individual researcher, coupled with persistent agentic AI that can guide, critique, and learn alongside the researcher.  This requires a lot more than straight-forward "chat with my pdfs" functionality, but significantly less than access to the entire World Wide Web. TM keeps the researcher firmly at the centre of epistemological and methodological decision-making but with access to the full range of their own sources (primary, secondary, RSS, social media) along with a consistent 'mentor and guide' and a range of configurable 'critical friends'. By keeping as much processing offline as possible and retaining detailed records in offline Markdown files I feel in control: I could continue to work on my monograph project even in the worst case scenario where access to frontier AI is entirely disabled. 

@@ -1,6 +1,6 @@
 # Architecture
 
-*As of October 2026. The Mechanism (TM) is evolving; this page describes its design rather than every detail. The full code is kept in a private repository for security purposes.*
+*As of October 2026. The Mechanism (TM) is evolving; this page describes its high-level architecture rather than every detail. The full code is kept in a private repository for security purposes.*
 
 ## A closed universe
 
