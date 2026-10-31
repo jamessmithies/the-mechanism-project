@@ -6,8 +6,8 @@ I am keeping the system in service despite it being complex and somewhat fragile
 
 <div class="video">
 <video controls preload="none" playsinline
-       poster="https://media.dhass.org/tm/the_mechanism_poster.jpg"
-       style="width:100%;max-width:960px;height:auto">
+       poster="assets/the_mechanism_poster.jpg"
+       style="width:100%;max-width:960px;height:auto;aspect-ratio:16/9;background:#000">
   <source src="https://media.dhass.org/tm/the_mechanism_web.mp4" type="video/mp4">
 </video>
 </div>
