@@ -46,7 +46,8 @@ deployed until its boundary is defined. In practice I never notice the boundarie
 
 Every machine denies outbound traffic by default. The only way out to the web is a filtering
 proxy on the cluster head, with a separate list of allowed destinations for each machine, and every
-request it handles is logged.
+request it handles is logged. The feed reader is the one exception. Feeds can come from anywhere, so
+it may request any destination, but only through the proxy.
 
 **Why.** I have complete control over what sources agents have access to, and what problems they can introduce.
 

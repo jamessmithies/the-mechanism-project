@@ -26,6 +26,8 @@ flowchart LR
     H -->|"files only"| J["Jetson<br/>embed and store"]
     Z -->|"hourly"| L["Library node<br/>harvest annotations"]
     L -->|"files only"| H
+    J -->|"read-only search"| A["Agent node<br/>Hermes Agent"]
+    A -->|"notes bridge"| O["Obsidian<br/>my notes"]
 ```
 
 1. **I file the book.** In the reference library I add a record with its PDF to the `vault`
@@ -50,6 +52,12 @@ flowchart LR
    details.
 7. **Annotations follow separately.** Every hour the library node harvests my highlights and notes
    from the library and sends them the same way, into a collection of their own.
+8. **The work continues in Obsidian.** Once a book is in the corpus the agent can search it, and
+   what comes of that lands in my Obsidian notes: plain Markdown files holding lab notes, transcripts
+   of discussion sessions, and drafts. The agent reaches them through a narrow bridge on the cluster
+   head, and Syncthing keeps a copy on my computers, iPad and iPhone. The relationship runs one way.
+   Notes draw on the corpus but are never ingested into it, so a corpus search returns my sources and
+   my annotations on them, not my own earlier prose.
 
 Removal is deliberately slower than addition. A work that is unfiled or deleted is removed only after
 two observations agree and a grace period has passed, and the nightly cleanup is capped. A mistake
@@ -84,7 +92,7 @@ sequenceDiagram
    finds the nearest ones, and returns at most 30, each with its source.
 4. **A frontier model synthesises.** The agent sends the question and those passages, never whole
    books, to Claude Opus 5.5 through OpenRouter. The request leaves through the cluster head's
-   outbound proxy, which allows each machine only the destinations it needs.
+   outbound proxy, which allows the agent only the destinations it needs.
 5. **I get an answer with citations**, back where I asked.
 
 ## What the journeys show
@@ -98,3 +106,81 @@ sequenceDiagram
 - **Refusing to guess.** When the inputs contradict each other, the system stops and says so instead
   of acting on a reading it can't trust. Removal waits for agreement. Both make it slower, and both
   have proved their worth.
+
+## Maintenance
+
+Most of the upkeep happens in four tools. n8n, Cockpit and Miniflux run on the cluster, behind the
+same tunnel and one-time code as the agent's dashboard. The Zotero group library is a hosted service.
+
+### n8n
+
+[n8n](https://n8n.io) is the workflow engine on the cluster head. It runs six workflows:
+
+| Workflow | When | What it does |
+|---|---|---|
+| Weekly digest | Fridays | Takes the week's unread feed items, has Qwen3 8B score them, has Claude Sonnet 5 curate the relevant ones, publishes a digest page, and sends me a summary on Telegram. |
+| Local backup | Daily | Backs the cluster up to local storage. |
+| Cloud backup | Sundays | Sends an encrypted backup to cloud object storage. |
+| Update check | Monthly | Compares the pinned versions of deployed services with the latest releases and reports on Telegram. Upgrades are done by hand. |
+| Security reminder | Quarterly | Reminds me on Telegram to run the security review. It checks nothing itself. |
+| Save paper | On request | Checks whether a paper is open access, writes a short summary if it is, files it in a track's queue in the library, and confirms on Telegram. |
+
+The Telegram line from the digest reports counts at each stage, so items lost along the way show up
+as numbers rather than disappearing. Each workflow is exported to the configuration repository. Four
+of the six are updated by a script that refuses to run if the live copy has drifted from the last
+committed version, so a forgotten edit in the browser isn't silently overwritten.
+
+n8n holds the model and messaging keys and can make outbound requests from the cluster head, so a
+session there is powerful. It stays behind the one-time code.
+
+### Cockpit
+
+[Cockpit](https://cockpit-project.org) is a web console for Linux servers, installed on every machine
+in the cluster. It shows each machine's services, logs and storage in a browser and includes a
+terminal, which suits a cluster where everything else is configured from a repository: Ansible
+decides how a machine should be, and Cockpit is where I look at how it is.
+
+Cockpit is root-level administration, so it gets the same treatment as n8n. Only the cluster head's
+console is reachable through the tunnel. The others accept connections from the cluster head alone.
+
+### Miniflux
+
+[Miniflux](https://miniflux.app) is the feed reader, on its own Raspberry Pi 4 with about 90 feeds
+sorted into 13 categories. Each category maps to a research track, which tells the weekly digest what
+to judge an item against. Two small helpers sit beside it for sources that don't offer a usable feed:
+RSSHub, and a proxy for Springer's feeds.
+
+Maintenance here is mostly editorial: adding and removing feeds, and keeping the categories in line
+with the tracks. The agent can add and remove feeds too, through its bridge, without seeing the key.
+
+Unread status is also the digest's working state. Entries are marked read only once a run has dealt
+with them, so anything that failed or didn't fit stays unread for the next run. If a backlog builds
+up, abandoning it is a decision I make in Miniflux by marking it read, not something the pipeline
+does for me.
+
+### The Zotero group library
+
+The corpus is defined by a [Zotero](https://www.zotero.org) group library called The Mechanism, not by
+my personal library. The personal library holds about 11,000 items gathered over twenty years and
+can't be rebuilt. The group library is working material that can be, and the agent's bridge is bound
+to it alone.
+
+The two main tracks each have a queue, where saved papers and digest picks wait. Nothing enters the
+corpus until it is filed into a track's `vault` collection, so filing is the editorial step that
+everything downstream depends on. The other collections are there for my own organisation, and the
+pipeline ignores them except for harvesting annotations.
+
+Because the library's structure is the system's vocabulary, ordinary library habits count as system
+administration, and a few have consequences:
+
+- **Keep `vault` flat.** Items in a subcollection of `vault` aren't ingested.
+- **PDFs only.** EPUBs and other attachments aren't fetched, by choice, so that every text passes the
+  same quality checks.
+- **Empty the trash.** A trashed item can leave the library's views disagreeing, and the nightly sync
+  will then refuse to publish changes until the trash is emptied.
+- **Don't rename source files.** Passage identifiers derive from the filename, so a rename orphans them.
+- **Tag what should stay out.** Items tagged `exclude-from-vault` are skipped.
+
+The two libraries also store files differently. The personal library uses WebDAV, and Zotero group
+libraries can only use Zotero's own storage, so copying an item between them carries the record but
+not the PDF. Nothing warns you, and the attachment has to be added again by hand.

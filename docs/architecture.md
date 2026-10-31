@@ -79,7 +79,9 @@ flowchart TB
   connections that machine needs.
 - **One way out.** No machine reaches the internet directly. Outbound web requests go through a
   filtering proxy on the cluster head, and each machine has its own short list of permitted
-  destinations. Anything else is refused and logged.
+  destinations. Anything else is refused and logged. The feed reader is the exception: feeds can
+  come from anywhere, so its requests may go to any destination, but they still pass through the
+  proxy and are logged.
 
 ## Credentials and bridges
 
@@ -136,4 +138,5 @@ so it gets the least:
 - **Backups** run daily to local storage and weekly, encrypted, to cloud object storage. Rollback is
   treated as a normal operation, not an emergency.
 - **Integrity reporting.** An hourly check compares what the library says the corpus should contain
-  with what the vector store holds, and reports any drift.
+  with what the vector store holds, and reports any drift. A weekly reconciliation also compares the
+  live library's collections directly with the store.
