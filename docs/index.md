@@ -9,7 +9,3 @@ The Mechanism (TM) is the primary research tool for my next monograph, *Infrastr
   <source src="https://media.dhass.org/tm/the_mechanism_web.mp4" type="video/mp4">
 </video>
 </div>
-
----
-
-James Smithies, Australian National University. TM is funded by the ANU Futures Scheme (2024–2026), awarded when I joined the ANU.
