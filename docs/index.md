@@ -7,7 +7,7 @@ in critical technical practice. The aim was to learn about the affordances and c
 TM is a bespoke system, designed and configured around my own technical and scholarly practices. Its design principles and architecture may be useful more widely, to people designing AI-enabled research platforms, but my focus has been on building a tool for my own research. This site documents the system at a technical level: what it is, how it works, what it costs, and what
 building it has taught me.
 
-I am only keeping TM in service because it has proven to be surprisingly useful for my research. It has exceeded my expectations, despite being closer to a Heath Robinson machine than a refined computing system. I use TM on a daily basis, as the primary research tool for my next monograph, *Infrastructural Inflections: Critical Technical Practice and the Architecture of Knowledge*. 
+I am only keeping TM in service because it has proven to be surprisingly useful for my research. It has exceeded my expectations, despite being closer to a Heath Robinson machine than a refined computing system. I use TM every week, as the primary research tool for my next monograph, *Infrastructural Inflections: Critical Technical Practice and the Architecture of Knowledge*. 
 
 <!-- Introductory video: embed here once published (YouTube, Vimeo or ANU hosting; GitHub Pages will not serve it). -->
 
