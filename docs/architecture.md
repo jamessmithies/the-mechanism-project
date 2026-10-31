@@ -10,12 +10,12 @@ library, the feeds I follow, a handful of structured academic catalogues, and my
 Nothing is ingested because an agent decided to search the World Wide Web for it.
 
 That closure is a research choice as much as a security one. It balances the power of agentic AI
-with a degree of epistemic control and definition that the open internet can't offer. I know and tightly control the epistemic boundaries of the system, ensuring any conceptual work I do with AI agents is defiend on my terms. When an agent answers a
-question, the boundaries of its Umwelt (world view) are boundaries I set and epxand or reduce as required for my purposes.
+with a degree of epistemic control and definition that the open internet can't offer. I know and tightly control the epistemic boundaries of the system, ensuring any conceptual work I do with AI agents is defined on my terms. When an agent answers a
+question, the boundaries of its Umwelt (world view) are boundaries I set and expand or reduce as required for my purposes.
 
-Inside that universe, data moves according to a *rivers of data* model defined by the hardware and network I deisgned and implemented myself. The cluster head is the primary 'headwaters': the point where scheduled work starts, where files are relayed between machines, and
+Inside that universe, data moves according to a *rivers of data* model defined by the hardware and network I designed and implemented myself. The cluster head is the primary 'headwaters': the point where scheduled work starts, where files are relayed between machines, and
 through which everything entering or leaving passes. From there data flows down defined channels to
-the machines and agents that use it, and out to the internet via tightly defined channels such as Zotero or PhilPapers. Each agent is constrained to the data relevant to its function, and reaches nothing else. 
+the machines and agents that use it, and out to the internet via tightly defined channels such as Zotero, PhilPapers or OpenAlex. Each agent is constrained to the data relevant to its function, and reaches nothing else. 
 
 ## The stance
 
@@ -66,7 +66,7 @@ flowchart TB
   network by rules on the router. The desktop, which does the heavy processing, is kept outside it
   and reaches the cluster only by depositing files.
 - **No open ports.** Nothing on the cluster accepts connections from the internet. Remote access to
-  the web interfaces runs through azero trust tunnel that the cluster opens outwards, behind a one-time code.
+  the web interfaces runs through a zero trust tunnel that the cluster opens outwards, behind a one-time code.
 - **Every machine denies by default, in both directions.** Inside the cluster network, traffic
   between machines is governed by each machine's own firewall, which allows only the specific
   connections that machine needs.
@@ -100,11 +100,13 @@ so it gets the least:
 
 - **Its own machine and its own user,** with no SSH key. The cluster head refuses SSH connections
   from it in any case.
-- **Four routes into the cluster,** each to a narrow service: the read-only corpus API, the library
-  bridge, the feed bridge, and a bridge for writing notes. It can't reach the models or the vector
+- **Five routes into the cluster,** each to a narrow service: the read-only corpus API, the library
+  bridge, the feed bridge, a bridge for writing notes, and a bridge that looks up a book's details
+  from its ISBN in OpenLibrary. It can't reach the models or the vector
   store behind the corpus API.
 - **A closed set of inputs.** It doesn't fetch arbitrary web pages. What reaches it is my own
-  messages, structured results from a handful of academic catalogues, passages from the corpus, and
+  messages, structured results from a handful of academic catalogues (arXiv, Semantic Scholar, OpenAlex and
+  Unpaywall, queried through [paper-search-mcp](https://github.com/openags/paper-search-mcp)), passages from the corpus, and
   entries from the feeds I follow. The weekly digest goes a step further: feed items are first
   scored by a small local model that can return only a structured verdict and has no tools.
 - **Operating-system confinement.** An AppArmor profile limits what the agent's process can touch.
@@ -114,7 +116,7 @@ so it gets the least:
 | Model | Runs on | Used for |
 |---|---|---|
 | Qwen3 8B | Jetson | Triage: scoring feed items for relevance to each research track |
-| Qwen3 32B | Desktop GPU | Describing each passage of every ingested text; triaging new publication records |
+| Qwen3 32B | Desktop GPU | Describing each passage of every ingested text; triaging new PhilPapers records for relevance to each research track |
 | nomic-embed-text | Jetson | Turning passages and questions into vectors for search |
 | Claude Opus 5.5, through OpenRouter | Anthropic's cloud | The agent: conversation, and answering questions from retrieved passages; primary voice in Workshop sessions |
 | Claude Sonnet 5, through OpenRouter | Anthropic's cloud | Curating the weekly digest from the items Qwen3 8B has scored |
@@ -128,7 +130,7 @@ so it gets the least:
   repository under cron.
 - **The main components** are all open source: Hermes Agent (the agent), Chroma (vector store),
   Ollama (local models), Syncthing (file transport), n8n (scheduled workflows), Miniflux (feeds),
-  PyMuPDF (text extraction), and Prometheus and Grafana (monitoring). Zotero holds the reference
+  PyMuPDF (text extraction), paper-search-mcp (academic catalogue search), and Prometheus and Grafana (monitoring). Zotero holds the reference
   library, and Cloudflare provides the tunnel and access control.
 - **Backups** run daily to local storage and weekly, encrypted, to cloud object storage. Rollback is
   treated as a normal operation, not an emergency.

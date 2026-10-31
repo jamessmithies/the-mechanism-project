@@ -2,7 +2,7 @@
 
 *As of October 2026. The Mechanism (TM) is evolving; this page provides an overview of some (but not all) of its functionality. The full code is kept in a private repository for security purposes.*
 
-The easiest way to understand TM is to explore workflow examples. The two provided below are two of several I use on a regular basis.
+The easiest way to understand TM is to explore workflow examples. The two below provide examples of several I use on a regular basis.
 
 ## The machines
 
@@ -13,7 +13,7 @@ The easiest way to understand TM is to explore workflow examples. The two provid
 | **Agent node** (Raspberry Pi 5) | The research agent I talk to: [Hermes Agent](https://github.com/NousResearch/hermes-agent), an open-source agent framework from Nous Research. It runs on its own machine, as its own user, and holds no keys to the rest of the cluster. |
 | **Jetson** (NVIDIA Orin Nano) | The corpus itself: the Chroma vector store, the nomic-embed-text embedding model, Qwen3 8B for triage, all served locally through Ollama, and a read-only API in front of them. |
 | **Library node** (Raspberry Pi 4) | The only machine in the cluster holding the reference library's key. It harvests annotations and serves a narrow bridge for library writes. |
-| **Other Raspberry Pi 4s** | A feed reader, a social media monitor, and three spares kept powered off. |
+| **Other Raspberry Pi 4s** | A feed reader, a social media monitor (a display-only dashboard of Bluesky and Mastodon posts, never ingested into the corpus), and three spares kept powered off. |
 
 ## An example workflow
 
@@ -55,7 +55,7 @@ flowchart TB
 8. **The work continues in Obsidian.** My primary work with TM is collected in Obsidian notes: plain Markdown files holding lab notes, transcripts
    of discussion sessions, and drafts. The agent can reach them through a narrow bridge on the cluster
    head, allowing me to discuss my lab notes, results of previous workshops, and planning and concept development notes for the monograph with Hermes. I can also use Hermes to tidy up or rearrange my notes, or critique my progress and identify errors in my thinking. The Obsidian sync service keeps a copy of all of those notes on my computers, iPad and iPhone. 
-9. **Writing.** I write in Markdown in a separate text editor (and old version of Sublime text), using Quarto (with Zotero) for referencing and footnoting, publishing to .docx or .pdf as required. This is a key step in the process, separating the act of writing from the collaborative human-AI research and concept development undertaken in TM.
+9. **Writing.** I write in Markdown in a separate text editor (an old version of Sublime text), using Quarto (with Zotero) for referencing and footnoting, publishing to .docx or .pdf as required. This is a key step in the process, separating the act of writing from the collaborative human-AI research and concept development undertaken in TM.
 
 
 ## A question's workflow
@@ -90,6 +90,12 @@ sequenceDiagram
    outbound proxy, which allows the agent only the destinations it needs.
 5. **I get an answer with citations** via either the Hermes dashboard or Telegram, depending where I asked.
 
+That is a search of what I have already read and filed. The agent can also search the horizon: asked
+to look beyond the corpus, it queries arXiv, Semantic Scholar and OpenAlex in parallel through
+[paper-search-mcp](https://github.com/openags/paper-search-mcp), merges the results by DOI, and
+returns papers I haven't read yet. Anything worth keeping goes to a queue in the library, never
+straight into the corpus.
+
 ## What the examples demonstrate
 
 - **Local where it matters.** Whole texts are fetched, extracted, described, embedded and stored on
@@ -120,7 +126,7 @@ same tunnel and one-time code as the agent's dashboard. The Zotero group library
 | Cloud backup | Sundays | Sends an encrypted backup to cloud object storage. |
 | Update check | Monthly | Compares the pinned versions of deployed services with the latest releases and reports on Telegram. Upgrades are done by hand. |
 | Security reminder | Quarterly | Reminds me on Telegram to run the security review. It checks nothing itself. |
-| Save paper | On request | Checks whether a paper is open access, writes a short summary if it is, files it in a track's queue in the library, and confirms on Telegram. |
+| Save paper | On request | Checks with Unpaywall whether a paper is open access, writes a short summary if it is, files it in a track's queue in the library, and confirms on Telegram. |
 
 Telegram delivers digest counts at each stage, so I know when new material is available to review. n8n stores the model and messaging keys and can make outbound requests from the cluster head, so a session there is powerful. It stays behind the one-time code.
 

@@ -1,14 +1,16 @@
 # The Mechanism
 
-The Mechanism (TM) is a research cluster built from found infrastructure: an existing desktop and a
-disused Raspberry Pi cluster, with a few pieces added where those ran out. It began as an exercise
-in critical technical practice. The aim was to learn about the affordances and constraints of AI for humanities and social science research by engaging in system design and maintenance myself, not paying for online services where I would be one of many paying customers, or renting cloud infrastructure.
+The Mechanism (TM) is the primary research tool for my next monograph, *Infrastructural Inflections: Critical Technical Practice and the Architecture of Knowledge*, and will be critically examined in that book. The system is built from found infrastructure: an existing desktop and a decommissioned Raspberry Pi cluster, with a few pieces added where necessary. The project began as an exercise in critical technical practice. My goal was to learn about the affordances and constraints of AI for humanities and social science research by engaging in system design and maintenance myself, not paying for online services where I would be one of many customers doubling as product testers, or renting cloud infrastructure. 
 
-TM is a bespoke system, designed and configured around my own technical and scholarly practices. Its design principles and architecture may be useful more widely, to people designing AI-enabled research platforms, but my focus has been on building a tool for my own research. This site provides high-level documentation intended to convey my motivations and design principles rather than detailed system information.
+I am keeping the system in service despite it being complex and somewhat fragile. TM is closer to a Heath Robinson machine than a refined computing system, but I use it every week. Maintenance has settled into a monthly routine. It is designed and configured around my personal scholarly practices with no consideration for wider use. Its design and architecture might prove useful to people building AI-enabled research infrastructure but my intention was to create a tool to enable my own work, using as much local hardware and as many small and open models as possible. In the parlance of my 2026 book [*Digital Modernity: Why We Need to Think Historically About the Digital Age*](https://www.taylorfrancis.com/books/oa-mono/10.4324/9781003684398/digital-modernity-james-smithies) (2026), TM is an example of 'minimally industrialized cognition'. This website provides high-level documentation intended to convey my motivations and design principles rather than detailed system information.
 
-I am only keeping TM in service because it has proven to be surprisingly useful for my research. It has exceeded my expectations, despite being somewhat fragile beause of its complexity. It is closer to a Heath Robinson machine than a refined computing system, and requires regular (although increasingly manageable) maintenance. I use TM every week, as the primary research tool for my next monograph, *Infrastructural Inflections: Critical Technical Practice and the Architecture of Knowledge*. 
-
-<!-- Introductory video: embed here once published (YouTube, Vimeo or ANU hosting; GitHub Pages will not serve it). -->
+<div class="video">
+<video controls preload="metadata" playsinline
+       poster="https://media.dhass.org/tm/the_mechanism_poster.jpg"
+       style="width:100%;max-width:960px;height:auto">
+  <source src="https://media.dhass.org/tm/the_mechanism_web.mp4" type="video/mp4">
+</video>
+</div>
 
 ---
 

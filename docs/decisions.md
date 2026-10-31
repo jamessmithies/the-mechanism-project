@@ -9,12 +9,12 @@ This requires a lot more than straight-forward "chat with my pdfs" functionality
 
 Many researchers will also want to choose small and open weight models for some tasks, limiting information leakage to hyperscale AI vendors and reducing the environmental impact of their work as far as possible. Frontier AI services are only accessed intermittently by TM, for advanced text processing and occasional 1-1 discussion sessions and workshops with multiple AI models. Because core TM data only consists of Markdown files and a Zotero library, I could easily migrate my research to another platform if necessary. 
 
-This portability and transparency extends to techncial aspects of the project too. I keep a record of architectural decisions in Markdown files in a private code repository, produced as a natural part of my software engineering process but also useful for auto-ethnography in the tradition of Science and Technology Studies (STS). The repository contains extensive documentation alongside Ansible playbooks that document as well as deploy infrastructure as code to TM. More than thirty architectural decisions are stored in the repository. Six examples are listed below.
+This portability and transparency extends to techncial aspects of the project too. I keep a record of architectural decisions in Markdown files in a private code repository, produced as a natural part of my software engineering process but also useful for auto-ethnography in the tradition of Science and Technology Studies (STS). The repository contains extensive documentation alongside Ansible playbooks that document as well as deploy infrastructure as code to TM. More than thirty architectural decisions are stored in the repository. Seven examples are listed below.
 
 ## 1. A closed universe of sources
 
 Every external account is a throwaway, and the agent's source inputs are limited to my Zotero library, the RSS feeds I
-follow, my own messages, and a few structured academic catalogues such as PhilPapers. There is no arbitrary web
+follow, my own messages, and a few structured academic catalogues: PhilPapers, arXiv, Semantic Scholar, OpenAlex and Unpaywall. There is no arbitrary web
 fetching, and no tool to support it.
 
 **Why.** An autonomous agent with network access needs a bounded blast radius, especially on a home network, and my research needs to be protected from information leakage and unwanted activity by agents. Throwaway accounts make any compromise a matter of
@@ -81,7 +81,22 @@ week, often more than 80,000, and at the Jetson's pace one week's file took four
 
 Speed wasn't the only problem. The 8-billion-parameter model marked about 0.4% of records as
 relevant. The 32-billion-parameter model on the desktop marked about 21%. The small model was
-quietly discarding papers I would have wanted. I relented and moved triage to my desktop computer off TM VLAN.
+quietly discarding papers I would have wanted. I relented and moved triage to my desktop computer off TM VLAN. The records the desktop marks as relevant
+are stored in a PhilPapers collection of their own on the Jetson, which the agent can search alongside
+the corpus.
 
 **Why it's relevant.** It is the clearest case of finding a performance floor: this was a task the small model could run,
 but not well enough. By moving up to a more powerful but still local machine, I compromised on system complexity but not data sovereignty.
+
+## 7. Removing Google Scholar
+
+The agent originally had five catalogues to search, including Google Scholar. Google Scholar was the
+odd one out: it has no public API, so the tool scraped its pages, broke whenever Google rate-limited it,
+and could hang for five to ten minutes. In September 2026 I removed the tool and closed the domain in
+the outbound proxy. OpenAlex covers most of the humanities material it was there for. It had become more attack surface than a useful piece of funcitonality.
+
+OpenLibrary led to different conclusions. In that case TM allows the agent can verify a book's details
+from its ISBN, but only through a small bridge on the cluster head that makes fixed lookups. Allowing
+the agent to reach OpenLibrary directly would also have opened made its free-text search available.
+
+**Why it's relevant.** The closed universe is maintained, on a case by case basis balancing risk, terms of service restrictions, and functionality. 
