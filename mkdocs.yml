@@ -3,7 +3,7 @@ site_description: >-
   Technical documentation for a research cluster built from found hardware as an exercise in
   critical technical practice.
 site_author: James Smithies
-site_url: https://jamessmithies.github.io/the-mechanism-project/
+site_url: https://the-mechanism.org/
 repo_url: https://github.com/jamessmithies/the-mechanism-project
 repo_name: the-mechanism-project
 copyright: >-
