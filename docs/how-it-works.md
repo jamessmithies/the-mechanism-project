@@ -2,7 +2,7 @@
 
 *As of October 2026. The Mechanism (TM) is evolving; this page describes its design rather than every detail. The full code is kept in a private repository for security purposes.*
 
-The easiest way to understand TM is to explore workflow examples. The two provided below are only two of several I use on a regular basis.
+The easiest way to understand TM is to explore workflow examples. The two provided below are two of several I use on a regular basis.
 
 ## The machines
 

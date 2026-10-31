@@ -1,44 +1,38 @@
 # Architecture
 
-*As of October 2026. This page describes the design, not every detail.*
+*As of October 2026. The Mechanism (TM) is evolving; this page describes its design rather than every detail. The full code is kept in a private repository for security purposes.*
 
 ## A closed universe
 
 The Mechanism (TM) is designed as a closed universe. The aim was a closed, personal research tool, not
-an experiment in an open world of agents roaming the internet. What enters it is chosen: my
+an experiment in an open world of agents roaming the internet. I determine what enters the system: my
 library, the feeds I follow, a handful of structured academic catalogues, and my own messages.
-Nothing arrives because an agent went looking for it.
+Nothing is ingested because an agent decided to search the World Wide Web for it.
 
 That closure is a research choice as much as a security one. It balances the power of agentic AI
-with a degree of epistemic control and definition that the open internet can't offer. I know what the system can know, where each
-piece of it came from, and every passage it retrieves carries its source. When it answers a
-question, the boundaries of what it drew on are the boundaries I set.
+with a degree of epistemic control and definition that the open internet can't offer. I know and tightly control the epistemic boundaries of the system, ensuring any conceptual work I do with AI agents is defiend on my terms. When an agent answers a
+question, the boundaries of its Umwelt (world view) are boundaries I set and epxand or reduce as required for my purposes.
 
-Inside that universe, data moves on a *rivers of data* model. The cluster head is the primary
-headwaters: the point where scheduled work starts, where files are relayed between machines, and
+Inside that universe, data moves according to a *rivers of data* model defined by the hardware and network I deisgned and implemented myself. The cluster head is the primary 'headwaters': the point where scheduled work starts, where files are relayed between machines, and
 through which everything entering or leaving passes. From there data flows down defined channels to
-the machines and agents that use it. Each agent is constrained to the data relevant to its function,
-and reaches nothing else. Most of what follows on this page is how those channels are cut and kept
-narrow.
+the machines and agents that use it, and out to the internet via tightly defined channels such as Zotero or PhilPapers. Each agent is constrained to the data relevant to its function, and reaches nothing else. 
 
 ## The stance
 
 TM is a research cluster under one researcher's control, on home hardware. Every external
 account it uses is a throwaway, created for the purpose, so a compromise means rotating a key and
-restoring from backup, not a disaster. That framing is deliberate. It is why the security here
-looks pragmatic rather than fortified.
+restoring from backup, not a disaster. 
 
-**What it defends against:**
+**What the architecture defends against:**
 
 - **A rogue agent.** The main concern is an AI agent that reads hostile text, is manipulated by it,
   and then tries to damage data, reach credentials it shouldn't have, or send data out.
 - **Credential leaks** from a machine's filesystem.
 - **Malformed input** that crashes a service.
-- **My own mistakes.** The answer to these is backups and rollback, not prevention.
+- **My own mistakes.** Through backups and rollback.
 
-**What it doesn't try to defend against:** a determined state-level adversary, physical access to the
-machines, compromised upstream software, very slow covert exfiltration, or the compromise of
-Cloudflare, which sits in front of it.
+**What the architecture doesn't try to defend against:** a determined state-level adversary deploying social as well as technical techniques, physical access to the
+machines, compromised upstream software, very slow covert exfiltration, or the compromise of Cloudflare, which sits in front of it.
 
 ## The network
 
@@ -72,8 +66,7 @@ flowchart TB
   network by rules on the router. The desktop, which does the heavy processing, is kept outside it
   and reaches the cluster only by depositing files.
 - **No open ports.** Nothing on the cluster accepts connections from the internet. Remote access to
-  the web interfaces runs through a tunnel that the cluster opens outwards, behind an access check
-  that sends a one-time code.
+  the web interfaces runs through azero trust tunnel that the cluster opens outwards, behind a one-time code.
 - **Every machine denies by default, in both directions.** Inside the cluster network, traffic
   between machines is governed by each machine's own firewall, which allows only the specific
   connections that machine needs.
@@ -88,14 +81,14 @@ flowchart TB
 Each credential lives on one machine, and the rest of the cluster reaches the service it unlocks
 through a small bridge that exposes only the operations needed.
 
-| Credential | Lives on | Everyone else gets |
+| Credential | Lives on | Other nodes get |
 |---|---|---|
 | Reference library key | Library node | A bridge with a fixed set of read and write routes |
 | Feed reader key | Feed reader | A bridge for managing subscriptions and reading entries |
 | Model and messaging keys | The agent node, in a file only the agent's user can read, and the workflow engine on the cluster head, for the weekly digest and notifications | Nothing: no other machine needs them |
 | Infrastructure secrets | Encrypted in the configuration repository | Decrypted only when the configuration is applied |
 
-The desktop holds its own library key, for fetching PDFs. It sits off the cluster network, so a
+The desktop stores its own library key, for fetching PDFs. It sits off the cluster network, so a
 compromised cluster machine can't reach it.
 
 ## The agent
@@ -123,8 +116,10 @@ so it gets the least:
 | Qwen3 8B | Jetson | Triage: scoring feed items for relevance to each research track |
 | Qwen3 32B | Desktop GPU | Describing each passage of every ingested text; triaging new publication records |
 | nomic-embed-text | Jetson | Turning passages and questions into vectors for search |
-| Claude Opus 5.5, through OpenRouter | Anthropic's cloud | The agent: conversation, and answering questions from retrieved passages |
+| Claude Opus 5.5, through OpenRouter | Anthropic's cloud | The agent: conversation, and answering questions from retrieved passages; primary voice in Workshop sessions |
 | Claude Sonnet 5, through OpenRouter | Anthropic's cloud | Curating the weekly digest from the items Qwen3 8B has scored |
+| Gemini 3.8 Flash, through OpenRouter | Google's cloud | Workshop sessions: devil's advocate, challenging assumptions and finding weaknesses |
+| GPT-6 Sol Pro, through OpenRouter | OpenAI's cloud | Workshop sessions: close reader, focusing on conceptual precision and terminology |
 
 ## Software and operations
 
