@@ -7,7 +7,7 @@ If I was forced to provide a single justification for TM's continued existence I
 
 Many researchers will also want to choose the smallest model for each job, reducing information leakage to hyperscale AI vendors and reducing the environmental impact of their work as far as possible. Frontier AI services are only accessed intermittently by TM, for advanced text processing and occasional 1-1 discussion sessions and workshops with multiple AI models. Because everything rests on Markdown files and a Zotero library, my research would also move easily to another platform offering the same balance. I keep a record of architectural decisions in Markdown files in the primary Obsidian notebook, produced as a natural part of my software engineering process but also useful for auto-ethnography in the tradition of Science and Technology Studies (STS). More than thirty architectural decisions exist. The six listed below provide a taste.
 
-## 1. A closed universe, permanently
+## 1. A closed universe of sources
 
 Every external account is a throwaway, and the agent's source inputs are limited to my Zotero library, the RSS feeds I
 follow, my own messages, and a few structured academic catalogues such as PhilPapers. There is no arbitrary web
