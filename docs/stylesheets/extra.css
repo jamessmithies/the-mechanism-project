@@ -104,6 +104,8 @@
 }
 .tm-cite a { color: var(--md-typeset-a-color); word-break: break-all; }
 .tm-cite a:hover { color: var(--md-accent-fg-color); }
+.tm-share { margin-top: 0.6rem; }
+.tm-share a { word-break: normal; }
 
 /* Footer: copyright and licences, on the page background with a rule above. */
 .md-footer-meta__inner { justify-content: center; }

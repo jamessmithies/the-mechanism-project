@@ -1,0 +1,15 @@
+{#- Share links, under the citation box. Plain links to each service's share page: no third-party
+    scripts, so nothing loads or tracks until a visitor clicks. -#}
+{% set cite = config.extra.citation %}
+{% set share_title = cite.site_title if page.is_homepage else page.title ~ " · " ~ cite.site_title %}
+{% set share_url = page.canonical_url | urlencode %}
+{% set share_text = share_title | urlencode %}
+<aside class="tm-cite tm-share">
+  <p class="tm-cite__label">Share this page</p>
+  <p class="tm-share__links">
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://x.com/intent/post?url={{ share_url }}&amp;text={{ share_text }}" target="_blank" rel="noopener">X</a> ·
+    <a href="https://bsky.app/intent/compose?text={{ share_text }}%20{{ share_url }}" target="_blank" rel="noopener">Bluesky</a> ·
+    <a href="mailto:?subject={{ share_text }}&amp;body={{ share_url }}">Email</a>
+  </p>
+</aside>
