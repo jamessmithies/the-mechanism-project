@@ -32,14 +32,14 @@ flowchart TB
 
 1. **I file the book or article.** In the reference library I add a record with its PDF to the `vault`
    collection of a research track. A track is any top-level collection that has a `vault` child,
-   so the library's own structure is the system's vocabulary. A new track needs no code change.
+   so the library's structure funcitons as the system vocabulary. Adding new research tracks doesn't required changes to the code.
 2. **The desktop fetches it.** Every night at 02:00 a sync on the desktop reads the library and
    fetches new PDFs into a local cache. If the library contradicts itself, for instance when an
    item has been trashed but its PDF hasn't, the sync refuses to publish that track's changes
    rather than guess. It reports the problem via Telegram and leaves everything as it was.
 3. **The text is extracted and checked.** Every six hours the desktop extracts the text. Scanned
    PDFs with no text layer, and texts too thin to be the whole work (a book yielding fewer than 40
-   passages, for example), are set aside with a reason, not quietly ingested.
+   passages, for example), are set aside and noted in the system log.
 4. **Each passage is described.** The text is cut into overlapping passages of about 3,000
    characters. For each one, Qwen3 32B, running on the desktop's GPU, writes a one-sentence
    description of what the passage is about, which makes it much easier to find later. None of
@@ -51,11 +51,11 @@ flowchart TB
    with nomic-embed-text, and stores it in that track's Chroma collection with its bibliographic
    details.
 7. **Annotations follow separately.** Every hour the library node harvests my highlights and notes
-   from the library and sends them the same way, into a collection of their own.
+   from the Zotero library and sends them to the vault, into a collection of their own.
 8. **The work continues in Obsidian.** My primary work with TM is collected in Obsidian notes: plain Markdown files holding lab notes, transcripts
    of discussion sessions, and drafts. The agent can reach them through a narrow bridge on the cluster
    head, allowing me to discuss my lab notes, results of previous workshops, and planning and concept development notes for the monograph with Hermes. I can also use Hermes to tidy up or rearrange my notes, or critique my progress and identify errors in my thinking. The Obsidian sync service keeps a copy of all of those notes on my computers, iPad and iPhone. 
-9. **Writing.** I write in Markdown in a separate text editor (an old version of Sublime text), using Quarto (with Zotero) for referencing and footnoting, publishing to .docx or .pdf as required. This is a key step in the process, separating the act of writing from the collaborative human-AI research and concept development undertaken in TM.
+9. **Writing.** I write in Markdown in a separate text editor (an old version of Sublime text), using Quarto with Zotero for referencing and footnoting, publishing to .docx or .pdf as required. This is a key step in the process, separating the act of writing from the collaborative human-AI research and concept development undertaken in TM.
 
 
 ## A question's workflow
@@ -93,8 +93,7 @@ sequenceDiagram
 That is a search of what I have already read and filed. The agent can also search the horizon: asked
 to look beyond the corpus, it queries arXiv, Semantic Scholar and OpenAlex in parallel through
 [paper-search-mcp](https://github.com/openags/paper-search-mcp), merges the results by DOI, and
-returns papers I haven't read yet. Anything worth keeping goes to a queue in the library, never
-straight into the corpus.
+returns papers I haven't read yet. Anything worth keeping goes to a queue in the library, where I can review it and add it to the vault, or annotate it, or discard it, as needed.
 
 ## What the examples demonstrate
 

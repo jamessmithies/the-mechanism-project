@@ -96,7 +96,7 @@ compromised cluster machine can't reach it.
 The agent is [Hermes Agent](https://github.com/NousResearch/hermes-agent), an open-source framework
 from Nous Research, running Claude Opus 5.5 through OpenRouter. I work with it mostly in its browser
 dashboard and sometimes over Telegram. It is the part of the system most exposed to what it reads,
-so it gets the least:
+so it is the most tightly controlled. It has:
 
 - **Its own machine and its own user,** with no SSH key. The cluster head refuses SSH connections
   from it in any case.
@@ -132,8 +132,7 @@ so it gets the least:
   Ollama (local models), Syncthing (file transport), n8n (scheduled workflows), Miniflux (feeds),
   PyMuPDF (text extraction), paper-search-mcp (academic catalogue search), and Prometheus and Grafana (monitoring). Zotero holds the reference
   library, and Cloudflare provides the tunnel and access control.
-- **Backups** run daily to local storage and weekly, encrypted, to cloud object storage. Rollback is
-  treated as a normal operation, not an emergency.
+- **Backups** run daily to local storage and weekly, encrypted, to cloud object storage.
 - **Integrity reporting.** An hourly check compares what the library says the corpus should contain
   with what the vector store holds, and reports any drift. A weekly reconciliation also compares the
   live library's collections directly with the store.

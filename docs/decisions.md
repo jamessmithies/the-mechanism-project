@@ -9,7 +9,7 @@ If I was forced to provide a single justification for TM's continued existence I
 
 This requires a lot more than straight-forward "chat with my pdfs" functionality, but significantly less than access to the entire World Wide Web. TM keeps the researcher firmly at the centre of epistemological and methodological decision-making but with access to the full range of their own sources (primary, secondary, RSS, social media) along with a consistent 'mentor and guide' and a range of configurable 'critical friends'. By keeping as much processing offline as possible and retaining detailed records in offline Markdown files I feel in control. I could continue to work on my monograph project even in the worst case scenario where access to frontier AI is entirely disabled. 
 
-Many researchers will also want to choose small and open weight models for some tasks, limiting information leakage to hyperscale AI vendors and reducing the environmental impact of their work as far as possible. Frontier AI services are only accessed intermittently by TM, for advanced text processing and occasional 1-1 discussion sessions and workshops with multiple AI models. Because core TM data only consists of Markdown files and a Zotero library, I could easily migrate my research to another platform if necessary. 
+I particularly like using small and open weight models for some tasks, limiting information leakage to hyperscale AI vendors and reducing the environmental impact of my work. The mixture of deterministic and non-deterministic workflows is also valuable, using n8n and RSS for repeatable tasks that don't require agentic AI. Frontier AI services are only accessed intermittently by TM, for advanced text processing and occasional 1-1 discussion sessions and workshops with multiple AI models. Because core TM data only consists of Markdown files and a Zotero library, I could easily migrate my research to another platform if necessary. 
 
 This portability and transparency extends to techncial aspects of the project too. I keep a record of architectural decisions in Markdown files in a private code repository, produced as a natural part of my software engineering process but also useful for auto-ethnography in the tradition of Science and Technology Studies (STS). The repository contains extensive documentation alongside Ansible playbooks that document as well as deploy infrastructure as code to TM. More than thirty architectural decisions are stored in the repository. Seven examples are listed below.
 
@@ -95,10 +95,10 @@ but not well enough. By moving up to a more powerful but still local machine, I 
 The agent originally had five catalogues to search, including Google Scholar. Google Scholar was the
 odd one out: it has no public API, so the tool scraped its pages, broke whenever Google rate-limited it,
 and could hang for five to ten minutes. In September 2026 I removed the tool and closed the domain in
-the outbound proxy. OpenAlex covers most of the humanities material it was there for. It had become more attack surface than a useful piece of funcitonality.
+the outbound proxy. OpenAlex covers most of the humanities material it was there for. It had become more of an attack surface than a useful piece of functionality.
 
-OpenLibrary led to different conclusions. In that case TM allows the agent can verify a book's details
+OpenLibrary led to different conclusions. In that case TM allows the agent to verify a book's details
 from its ISBN, but only through a small bridge on the cluster head that makes fixed lookups. Allowing
-the agent to reach OpenLibrary directly would also have opened made its free-text search available.
+the agent to reach OpenLibrary directly would have introduced similar issues to Google Scholar.
 
 **Why it's relevant.** The closed universe is maintained, on a case by case basis balancing risk, terms of service restrictions, and functionality. 
